@@ -45,7 +45,7 @@ class Database {
 			} else {
 				resolve();
 			}
-		}
+		});
 	}
 }
 
