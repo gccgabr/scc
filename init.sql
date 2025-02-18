@@ -2,10 +2,10 @@
 
 -- Servidor
 CREATE TABLE IF NOT EXISTS Servant(
-	cpf VARCHAR(11) PRIMARY KEY NOT NULL,
+	cpf CHAR(11) PRIMARY KEY NOT NULL,
 	name VARCHAR(100) NOT NULL,
-	phone VARCHAR(15) NOT NULL,
-	email VARCHAR(15) NOT NULL,
+	phone VARCHAR(15),
+	email VARCHAR(15),
 	password CHAR(256) NOT NULL,
 	is_admin INTEGER CHECK (is_admin IN (0, 1))
 );
