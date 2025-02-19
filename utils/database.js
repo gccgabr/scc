@@ -136,6 +136,23 @@ class Database {
 			}
 		});
 	}
+
+	// Deletar registro.
+	deleteEntry(tableName, primaryKeyName, primaryKeyValue) {
+		return new Promise((resolve, reject) => {
+			if (this.db) {
+				this.db.run(`DELETE FROM ${tableName} WHERE ${primaryKeyName} = '${primaryKeyValue}'`, (err) => {
+					if (err) {
+						console.log("Erro ao tentar deletar registro.");
+						return reject(err);
+					}
+					resolve();
+				});
+			} else {
+				reject(new Error("Não há uma conexão com banco de dados."));
+			}
+		});
+	}
 }
 
 module.exports = new Database();
