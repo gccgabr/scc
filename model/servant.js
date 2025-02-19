@@ -45,6 +45,12 @@ class Servant {
 	}
 
 	queryByPrivilege(isAdmin) {
+		db.open()
+		db.queryByAttribute(tableName, "is_admin", isAdmin).then(rows => {
+			console.log(rows);
+			return rows;
+		});
+		db.close();
 	}
 }
 
@@ -53,4 +59,5 @@ let srv = new Servant();
 //srv.queryByCPF("00000000001");
 //srv.queryByName("Pessoa");
 //srv.queryByPhoneNumber("000000000000000");
-srv.queryByEmailAddress("test@test.com");
+//srv.queryByEmailAddress("test@test.com");
+srv.queryByPrivilege(1);
