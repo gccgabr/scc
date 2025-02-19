@@ -26,9 +26,18 @@ class Servant {
 		});
 		db.close();
 	}
+
+	queryByPhoneNumber(phone) {
+		db.open();
+		db.queryByAttribute(tableName, "phone", phone).then(rows => {
+			return rows;
+		});
+		db.close();
+	}
 }
 
 let srv = new Servant();
 //srv.addNewServant("00000000002", "Pessoa", "000000000000000", "h4sh3d", 1);
 //srv.queryByCPF("00000000001");
-srv.queryByName("Pessoa");
+//srv.queryByName("Pessoa");
+srv.queryByPhoneNumber("000000000000000");
