@@ -73,7 +73,26 @@ class Database {
 	}
 
 	// Consultar registros específicos de uma tabela.
-	queryByAttribute() {
+	queryByAttribute(tableName, attributeName, attributeValue) {
+		return new Promise((resolve, reject) => {
+			if (this.db) {
+				this.db.get(`SELECT * FROM ${tableName} WHERE ${attributeName}='${attributeValue}'`, (err, row) => {
+						if (err) {
+							console.log("Erro ao consultar registro no banco de dados.");
+							return reject(err);
+						} else {
+							if (row === undefined) {
+								console.log("Nenhum registro encontrado.");
+								resolve();
+							} else {
+								resolve(row);
+							}
+						}
+					});
+			} else {
+				reject(new Error("Não há uma conexão com banco de dados."));
+			}
+		});
 	}
 }
 
