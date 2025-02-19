@@ -97,16 +97,16 @@ class Database {
 	queryByAttribute(tableName, attributeName, attributeValue) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
-				this.db.get(`SELECT * FROM ${tableName} WHERE ${attributeName} = '${attributeValue}'`, (err, row) => {
+				this.db.all(`SELECT * FROM ${tableName} WHERE ${attributeName} = '${attributeValue}'`, (err, rows) => {
 						if (err) {
 							console.log("Erro ao consultar registro no banco de dados.");
 							return reject(err);
 						} else {
-							if (row === undefined) {
+							if (rows.length == 0) {
 								console.log("Nenhum registro encontrado.");
 								resolve();
 							} else {
-								resolve(row);
+								resolve(rows);
 							}
 						}
 					});
