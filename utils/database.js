@@ -104,7 +104,7 @@ class Database {
 						} else {
 							if (rows.length == 0) {
 								console.log("Nenhum registro encontrado.");
-								resolve();
+								resolve(rows);
 							} else {
 								resolve(rows);
 							}
