@@ -76,7 +76,7 @@ class Database {
 	queryByAttribute(tableName, attributeName, attributeValue) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
-				this.db.get(`SELECT * FROM ${tableName} WHERE ${attributeName}='${attributeValue}'`, (err, row) => {
+				this.db.get(`SELECT * FROM ${tableName} WHERE ${attributeName} = '${attributeValue}'`, (err, row) => {
 						if (err) {
 							console.log("Erro ao consultar registro no banco de dados.");
 							return reject(err);
@@ -88,6 +88,27 @@ class Database {
 								resolve(row);
 							}
 						}
+					});
+			} else {
+				reject(new Error("Não há uma conexão com banco de dados."));
+			}
+		});
+	}
+
+
+	// Alterar campo de um registro.
+	alterAttributeValue(tableName, attributeName, newAttributeValue, primaryKeyName, primaryKeyValue) {
+		return new Promise((resolve, reject) => {
+			if (this.db) {
+				this.db.run(`
+					UPDATE ${tableName}
+					SET ${attributeName} = '${newAttributeValue}'
+					WHERE ${primaryKeyName} = '${primaryKeyValue}'`, (err) => {
+						if (err) {
+							console.log("Erro ao alterar registro.");
+							return reject(err);
+						}
+						resolve();
 					});
 			} else {
 				reject(new Error("Não há uma conexão com banco de dados."));
