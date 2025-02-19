@@ -48,6 +48,27 @@ class Database {
 		});
 	}
 
+	// Adicionar registro a uma tabela.
+	addEntry(tableName, entryValues) {
+		return new Promise((resolve, reject) => {
+			if (this.db) {
+				// Construir uma consulta SQL dinamicamente.
+				let sql = `INSERT INTO ${tableName} VALUES (`;
+				sql += entryValues.map(() => "?").join(", ");
+				sql += ")";
+
+				this.db.run(sql, entryValues, (err) => {
+					if (err) {
+						console.log(err);
+						return reject(err);
+					}
+				});
+			} else {
+				reject(new Error("Não há uma conexão com banco de dados."));
+			}
+		});
+	}
+
 	// Consultar registros gerais de uma tabela.
 	queryAll(tableName) {
 		return new Promise((resolve, reject) => {
