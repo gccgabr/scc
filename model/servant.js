@@ -34,10 +34,19 @@ class Servant {
 		});
 		db.close();
 	}
+
+	queryByEmailAddress(email) {
+		db.open();
+		db.queryByAttribute(tableName, "email", email).then(rows => {
+			console.log(rows);
+			return rows;
+		});
+	}
 }
 
 let srv = new Servant();
-//srv.addNewServant("00000000002", "Pessoa", "000000000000000", "h4sh3d", 1);
+//srv.addNewServant("00000000002", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1);
 //srv.queryByCPF("00000000001");
 //srv.queryByName("Pessoa");
-srv.queryByPhoneNumber("000000000000000");
+//srv.queryByPhoneNumber("000000000000000");
+srv.queryByEmailAddress("test@test.com");
