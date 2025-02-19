@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Servant(
 	phone VARCHAR(15),
 	email VARCHAR(15),
 	password CHAR(256) NOT NULL,
-	is_admin INTEGER CHECK (is_admin IN (0, 1))
+	is_admin INTEGER CHECK (is_admin IN (0, 1)) NOT NULL
 );
 
 
