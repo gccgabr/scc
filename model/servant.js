@@ -15,7 +15,15 @@ class Servant {
 		db.open();
 		db.queryByAttribute(tableName, "cpf", cpf).then(rows => {
 			return rows;
-		});;
+		});
+		db.close();
+	}
+
+	queryByName(name) {
+		db.open()
+		db.queryByAttribute(tableName, "name", name).then(rows => {
+			return rows;
+		});
 		db.close();
 	}
 }
@@ -23,3 +31,4 @@ class Servant {
 let srv = new Servant();
 //srv.addNewServant("00000000002", "Pessoa", "000000000000000", "h4sh3d", 1);
 //srv.queryByCPF("00000000001");
+srv.queryByName("Pessoa");
