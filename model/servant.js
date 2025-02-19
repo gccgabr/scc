@@ -41,6 +41,10 @@ class Servant {
 			console.log(rows);
 			return rows;
 		});
+		db.close();
+	}
+
+	queryByPrivilege(isAdmin) {
 	}
 }
 
