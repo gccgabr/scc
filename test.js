@@ -2,10 +2,10 @@
 
 const db = require("./utils/database");
 
-db.open();
-db.queryAll("Servant").then(rows => {
-	console.log(rows);
-});
+//db.open();
+//db.queryAll("Servant").then(rows => {
+//	console.log(rows);
+//});
 //db.addEntry("Servant", ["00000000000", "Pessoa", "000000000000000", "test@test.com", "k3y", 1]);
 //db.queryByAttribute("Servant", "name", "Pessoa").then(row => {
 //	console.log(row)
@@ -19,4 +19,11 @@ db.queryAll("Servant").then(rows => {
 //	console.log(row)
 //});
 //db.deleteEntry("Servant", "cpf", "00000000000");
+//db.close();
+
 db.close();
+db.open();
+//db.open();
+//db.close();
+
+//console.log(db.status);

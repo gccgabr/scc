@@ -11,6 +11,7 @@ class Servant {
 		db.close();
 	}
 
+	/* Métodos para leitura. */
 	queryByCPF(cpf) {
 		db.open();
 		db.queryByAttribute(tableName, "cpf", cpf).then(rows => {
@@ -46,10 +47,17 @@ class Servant {
 
 	queryByPrivilege(isAdmin) {
 		db.open()
-		db.queryByAttribute(tableName, "is_admin", isAdmin).then(rows => {
-			console.log(rows);
-			return rows;
-		});
+		return db.queryByAttribute(tableName, "is_admin", isAdmin)
+			.then(rows => {
+				db.close();
+			});
+	}
+
+
+	/* Métodos para atualização.*/
+	alterCPF(cpf, newCpf) {
+		db.open();
+		db.alterAttributeValue(tableName, "cpf", newCpf, "cpf", cpf);
 		db.close();
 	}
 }
@@ -60,4 +68,5 @@ let srv = new Servant();
 //srv.queryByName("Pessoa");
 //srv.queryByPhoneNumber("000000000000000");
 //srv.queryByEmailAddress("test@test.com");
+srv.queryByPrivilege(1);
 srv.queryByPrivilege(1);
