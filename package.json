@@ -22,6 +22,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "sqlite3": "https://github.com/tryghost/node-sqlite3/tarball/master"
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
   }
 }

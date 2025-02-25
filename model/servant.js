@@ -6,9 +6,11 @@ const tableName = "Servant";
 class Servant {
 	// Adicionar novo servidor.
 	addNewServant(cpf, name, phone, email, hashedPassword, isAdmin) {
-		db.open();
-		db.addEntry(tableName, [cpf, name, phone, email, hashedPassword, isAdmin]);
-		db.close();
+		(async() => {
+			await db.open();
+			await db.addEntry(tableName, [cpf, name, phone, email, hashedPassword, isAdmin]);
+			await db.close();
+		})();
 	}
 
 	/* Métodos para leitura. */
@@ -46,11 +48,11 @@ class Servant {
 	}
 
 	queryByPrivilege(isAdmin) {
-		db.open()
-		return db.queryByAttribute(tableName, "is_admin", isAdmin)
-			.then(rows => {
-				db.close();
-			});
+		(async() => {
+			await db.open();
+			await db.queryByAttribute(tableName, "is_admin", isAdmin);
+			await db.close();
+		})();
 	}
 
 

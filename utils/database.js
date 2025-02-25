@@ -1,6 +1,7 @@
 "use strict";
 
 const sqlite3 =  require("sqlite3").verbose();
+//const { DatabaseSync } = require("sqlite");
 const path = require("path");
 const dbName = "sccDB.db";
 
@@ -16,7 +17,7 @@ class Database {
 			if (this.db) {
 				return resolve(this.db);
 			}
-			this.db = new sqlite3.Database(this.dbPath, (err) => {
+			this.db = new DatabaseSync(this.dbPath, (err) => {
 				if (err) {
 					console.log(err);
 					return reject(err);
