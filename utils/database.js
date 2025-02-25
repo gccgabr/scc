@@ -21,7 +21,7 @@ class Database {
 					console.log(err);
 					return reject(err);
 				}
-				console.log("Conexão com o banco de dados estabelecida.");
+				console.log("Conexão com o banco de dados estabelecida com êxito.");
 				resolve(this.db);
 			});
 		});
@@ -40,16 +40,22 @@ class Database {
 	}
 
 	// Encerrar conexão com o banco de dados.
-	close() {
+	async close() {
 		return new Promise((resolve, reject) => {
 			// Verificar se há uma conexão de banco de dados aberta.
 			if (this.db) {
+				//try {
+				//	this.db.close();
+				//} catch (e) {
+				//	console.log("No error occurred.");
+				//	this.db = null;
+				//}
 				this.db.close((err) => {
 					if (err) {
 						console.log("Erro ao encerrar conexão com banco de dados.");
 						reject(err);
 					} else {
-						console.log("Conexão com o banco de dados encerrada.");
+						console.log("Conexão com o banco de dados encerrada com êxito.");
 						this.db = null;
 						resolve();
 					}
@@ -74,7 +80,7 @@ class Database {
 	}
 
 	// Adicionar registro a uma tabela.
-	addEntry(tableName, entryValues) {
+	async addEntry(tableName, entryValues) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
 				// Construir uma consulta SQL dinamicamente.
@@ -95,7 +101,7 @@ class Database {
 	}
 
 	// Consultar registros gerais de uma tabela.
-	queryAll(tableName) {
+	async queryAll(tableName) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
 				this.db.all(`SELECT * FROM ${tableName}`, (err, rows) => {
@@ -119,7 +125,7 @@ class Database {
 	}
 
 	// Consultar registros específicos de uma tabela.
-	queryByAttribute(tableName, attributeName, attributeValue) {
+	async queryByAttribute(tableName, attributeName, attributeValue) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
 				this.db.all(`SELECT * FROM ${tableName} WHERE ${attributeName} = '${attributeValue}'`, (err, rows) => {
@@ -143,7 +149,7 @@ class Database {
 
 
 	// Alterar campo de um registro.
-	alterAttributeValue(tableName, attributeName, newAttributeValue, primaryKeyName, primaryKeyValue) {
+	async alterAttributeValue(tableName, attributeName, newAttributeValue, primaryKeyName, primaryKeyValue) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
 				this.db.run(`
@@ -163,7 +169,7 @@ class Database {
 	}
 
 	// Deletar registro.
-	deleteEntry(tableName, primaryKeyName, primaryKeyValue) {
+	async deleteEntry(tableName, primaryKeyName, primaryKeyValue) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
 				this.db.run(`DELETE FROM ${tableName} WHERE ${primaryKeyName} = '${primaryKeyValue}'`, (err) => {

@@ -21,9 +21,11 @@ const db = require("./utils/database");
 //db.deleteEntry("Servant", "cpf", "00000000000");
 //db.close();
 
-db.close();
-db.open();
-//db.open();
-//db.close();
+(async() => {
+	await db.open();
+	await db.close();
+	await db.open();
+	await db.close();
+})();
 
 //console.log(db.status);
