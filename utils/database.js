@@ -62,6 +62,7 @@ class Database {
 						console.log(err);
 						return reject(err);
 					}
+					return resolve(true);
 				});
 			} else {
 				return reject(new Error("Não há uma conexão com banco de dados."));

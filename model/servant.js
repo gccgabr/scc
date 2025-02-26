@@ -7,8 +7,9 @@ class Servant {
 	// Adicionar novo servidor.
 	addNewServant(cpf, name, phone, email, hashedPassword, isAdmin) {
 		db.open();
-		db.addEntry(tableName, [cpf, name, phone, email, hashedPassword, isAdmin]);
+		let res = db.addEntry(tableName, [cpf, name, phone, email, hashedPassword, isAdmin]);
 		db.close();
+		return res;
 	}
 
 	/* Métodos para leitura. */
@@ -57,19 +58,31 @@ class Servant {
 }
 
 let srv = new Servant();
-//srv.addNewServant("00000000002", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1);
-srv.queryByCPF("00000000002").then((rows) => {
-	console.log(rows);
-});
-srv.queryByName("Pessoa").then((rows) => {
-	console.log(rows);
-});
-srv.queryByPhoneNumber("000000000000000").then((rows) => {
-	console.log(rows);
-});
-srv.queryByEmailAddress("test@test.com").then((rows) => {
-	console.log(rows);
-});
-srv.queryByPrivilege(1).then((rows) => {
-	console.log(rows);
-});
+//srv.addNewServant("00000000003", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1);
+//srv.queryByCPF("00000000003").then((rows) => {
+//	console.log(rows);
+//});
+//srv.queryByName("Pessoa").then((rows) => {
+//	console.log(rows);
+//});
+//srv.queryByPhoneNumber("000000000000000").then((rows) => {
+//	console.log(rows);
+//});
+//srv.queryByEmailAddress("test@test.com").then((rows) => {
+//	console.log(rows);
+//});
+//srv.queryByPrivilege(1).then((rows) => {
+//	console.log(rows);
+//});
+
+
+srv.addNewServant("00000000005", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1)
+	.then((res) => {
+		if (res) {
+			console.log("Usuário adicionado com êxito.");
+		srv.queryByCPF("00000000005")
+			.then((rows) => {
+				console.log(rows);
+			});
+		}
+	});
