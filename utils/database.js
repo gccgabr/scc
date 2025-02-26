@@ -49,7 +49,7 @@ class Database {
 	}
 
 	// Adicionar registro a uma tabela.
-	async addEntry(tableName, entryValues) {
+	addEntry(tableName, entryValues) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
 				// Construir uma consulta SQL dinamicamente.
@@ -64,13 +64,13 @@ class Database {
 					}
 				});
 			} else {
-				reject(new Error("Não há uma conexão com banco de dados."));
+				return reject(new Error("Não há uma conexão com banco de dados."));
 			}
 		});
 	}
 
 	// Consultar registros gerais de uma tabela.
-	async queryAll(tableName) {
+	queryAll(tableName) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
 				this.db.all(`SELECT * FROM ${tableName}`, (err, rows) => {
@@ -80,15 +80,15 @@ class Database {
 					} else {
 						if (rows.length < 1) {
 							console.log("Nenhum registro encontrado.");
-							resolve();
+							return resolve(undefined);
 						} else {
 							console.log("Foram encontrado(s) " + rows.length + " registros.");
-							resolve(rows);
+							return resolve(rows);
 						}
 					}
 				});
 			} else {
-				reject(new Error("Não há uma conexão com banco de dados."));
+				return reject(new Error("Não há uma conexão com banco de dados."));
 			}
 		});
 	}
@@ -118,7 +118,7 @@ class Database {
 
 
 	// Alterar campo de um registro.
-	async alterAttributeValue(tableName, attributeName, newAttributeValue, primaryKeyName, primaryKeyValue) {
+	alterAttributeValue(tableName, attributeName, newAttributeValue, primaryKeyName, primaryKeyValue) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
 				this.db.run(`
@@ -129,7 +129,7 @@ class Database {
 							console.log("Erro ao alterar registro.");
 							return reject(err);
 						}
-						resolve();
+						return resolve(undefined); 
 					});
 			} else {
 				reject(new Error("Não há uma conexão com banco de dados."));
@@ -138,7 +138,7 @@ class Database {
 	}
 
 	// Deletar registro.
-	async deleteEntry(tableName, primaryKeyName, primaryKeyValue) {
+	deleteEntry(tableName, primaryKeyName, primaryKeyValue) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
 				this.db.run(`DELETE FROM ${tableName} WHERE ${primaryKeyName} = '${primaryKeyValue}'`, (err) => {
@@ -146,10 +146,10 @@ class Database {
 						console.log("Erro ao tentar deletar registro.");
 						return reject(err);
 					}
-					resolve();
+					return resolve(undefined);
 				});
 			} else {
-				reject(new Error("Não há uma conexão com banco de dados."));
+				return reject(new Error("Não há uma conexão com banco de dados."));
 			}
 		});
 	}
