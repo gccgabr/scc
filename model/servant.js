@@ -5,17 +5,17 @@ const tableName = "Servant";
 
 class Servant {
 	// Adicionar novo servidor.
-	addNewServant(cpf, name, phone, email, hashedPassword, isAdmin) {
+	async addNewServant(cpf, name, phone, email, hashedPassword, isAdmin) {
 		db.open();
-		let res = db.addEntry(tableName, [cpf, name, phone, email, hashedPassword, isAdmin]);
+		let res = await db.addEntry(tableName, [cpf, name, phone, email, hashedPassword, isAdmin]);
 		db.close();
 		return res;
 	}
 
 	/* Métodos para leitura. */
-	queryByCPF(cpf) {
+	async queryByCPF(cpf) {
 		db.open();
-		let rows = db.queryByAttribute(tableName, "cpf", cpf);
+		let rows = await db.queryByAttribute(tableName, "cpf", cpf);
 		db.close();
 		return rows;
 	}
@@ -76,13 +76,13 @@ let srv = new Servant();
 //});
 
 
-srv.addNewServant("00000000005", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1)
+srv.addNewServant("00000000007", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1)
 	.then((res) => {
 		if (res) {
 			console.log("Usuário adicionado com êxito.");
-		srv.queryByCPF("00000000005")
-			.then((rows) => {
-				console.log(rows);
-			});
 		}
+	});
+srv.queryByCPF("00000000007")
+	.then((rows) => {
+		console.log(rows);
 	});
