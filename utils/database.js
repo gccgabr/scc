@@ -12,72 +12,38 @@ class Database {
 	}
 
 	// Estabelecer conexão com o banco de dados.
-	async open() {
+	open() {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
+				console.log("aberta");
+				return resolve(this.db);
+			} else {
+				this.db = new sqlite3.Database(this.dbPath, (err) => {
+					if (err) {
+						return reject(err);
+					}
+				});
+				console.log("primeira vez aberta");
 				return resolve(this.db);
 			}
-			this.db = new DatabaseSync(this.dbPath, (err) => {
-				if (err) {
-					console.log(err);
-					return reject(err);
-				}
-				console.log("Conexão com o banco de dados estabelecida com êxito.");
-				resolve(this.db);
-			});
 		});
-		// Verificar se há uma conexão estabelecida.
-		//if (this.db) {
-		//	return this.db;
-		//}
-		//this.db = new sqlite3.Database(this.dbPath, (err) => {
-		//	if (err) {
-		//		console.log(err);
-		//		return err;
-		//	}
-		//	console.log("Conexão com o banco de dados estabelecida.");
-		//	return this.db;
-		//});
 	}
 
 	// Encerrar conexão com o banco de dados.
-	async close() {
+	close() {
 		return new Promise((resolve, reject) => {
-			// Verificar se há uma conexão de banco de dados aberta.
 			if (this.db) {
-				//try {
-				//	this.db.close();
-				//} catch (e) {
-				//	console.log("No error occurred.");
-				//	this.db = null;
-				//}
 				this.db.close((err) => {
 					if (err) {
-						console.log("Erro ao encerrar conexão com banco de dados.");
-						reject(err);
-					} else {
-						console.log("Conexão com o banco de dados encerrada com êxito.");
-						this.db = null;
-						resolve();
+						console.log(err);
+						return reject(err);
 					}
 				});
+				this.db = null;
 			} else {
-				resolve();
+				console.log("Não há conexões com o banco de dados abertas.");
 			}
 		});
-		//if (this.db) {
-		//	this.db.close((err) => {
-		//		if (err) {
-		//			console.log("Erro ao encerrar conexão com banco de dados.");
-		//			console.log(err);
-		//			return err;
-		//		} else {
-		//			console.log("Conexão com o banco de dados encerrada.");
-		//			this.db = null;
-		//			return;
-		//		}
-		//	});
-		//}
 	}
 
 	// Adicionar registro a uma tabela.
