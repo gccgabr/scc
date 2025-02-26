@@ -15,15 +15,16 @@ class Database {
 	open() {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
-				console.log("aberta");
+				console.log("Já há uma conexão com banco de dados aberta.");
 				return resolve(this.db);
 			} else {
 				this.db = new sqlite3.Database(this.dbPath, (err) => {
 					if (err) {
+						console.log("Falha ao estabelecer conexão com o banco de dados.");
 						return reject(err);
 					}
 				});
-				console.log("primeira vez aberta");
+				console.log("Conexão com o banco de dados estabelecida com êxito.");
 				return resolve(this.db);
 			}
 		});
@@ -35,11 +36,12 @@ class Database {
 			if (this.db) {
 				this.db.close((err) => {
 					if (err) {
-						console.log(err);
+						console.log("Falha ao encerrar conexão com o banco de dados.");
 						return reject(err);
 					}
 				});
 				this.db = null;
+				console.log("Conexão com o banco de dados encerrada com êxito.");
 			} else {
 				console.log("Não há conexões com o banco de dados abertas.");
 			}
