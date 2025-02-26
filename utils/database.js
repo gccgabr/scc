@@ -94,7 +94,7 @@ class Database {
 	}
 
 	// Consultar registros específicos de uma tabela.
-	async queryByAttribute(tableName, attributeName, attributeValue) {
+	queryByAttribute(tableName, attributeName, attributeValue) {
 		return new Promise((resolve, reject) => {
 			if (this.db) {
 				this.db.all(`SELECT * FROM ${tableName} WHERE ${attributeName} = '${attributeValue}'`, (err, rows) => {
@@ -104,9 +104,9 @@ class Database {
 						} else {
 							if (rows.length == 0) {
 								console.log("Nenhum registro encontrado.");
-								resolve(rows);
+								return resolve(rows);
 							} else {
-								resolve(rows);
+								return resolve(rows);
 							}
 						}
 					});

@@ -48,11 +48,10 @@ class Servant {
 	}
 
 	queryByPrivilege(isAdmin) {
-		(async() => {
-			await db.open();
-			await db.queryByAttribute(tableName, "is_admin", isAdmin);
-			await db.close();
-		})();
+		db.open();
+		let rows = db.queryByAttribute(tableName, "is_admin", isAdmin);
+		db.close();
+		return rows;
 	}
 
 
@@ -70,5 +69,7 @@ let srv = new Servant();
 //srv.queryByName("Pessoa");
 //srv.queryByPhoneNumber("000000000000000");
 //srv.queryByEmailAddress("test@test.com");
-srv.queryByPrivilege(1);
-srv.queryByPrivilege(1);
+srv.queryByPrivilege(1).then((rows) => {
+	console.log(rows);
+});
+//srv.queryByPrivilege(1);
