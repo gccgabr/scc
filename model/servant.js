@@ -50,9 +50,9 @@ class Servant {
 
 
 	/* Métodos para atualização.*/
-	alterCPF(cpf, newCpf) {
+	async alterCPF(cpf, newCpf) {
 		db.open();
-		db.alterAttributeValue(tableName, "cpf", newCpf, "cpf", cpf);
+		let res = await db.alterAttributeValue(tableName, "cpf", newCpf, "cpf", cpf);
 		db.close();
 	}
 }
@@ -76,13 +76,27 @@ let srv = new Servant();
 //});
 
 
-srv.addNewServant("00000000007", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1)
-	.then((res) => {
-		if (res) {
-			console.log("Usuário adicionado com êxito.");
-		}
-	});
-srv.queryByCPF("00000000007")
+// srv.addNewServant("00000000007", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1)
+// 	.then((res) => {
+// 		if (res) {
+// 			console.log("Usuário adicionado com êxito.");
+// 		}
+// 	});
+srv.queryByCPF("00000000009")
 	.then((rows) => {
 		console.log(rows);
+	});
+
+srv.alterCPF("00000000009", "000000000010")
+	.then((res) => {
+		if (res) {
+			console.log("CPF alterado com êxito.");
+		}
+	});
+
+srv.queryByCPF("000000000010")
+	.then((res) => {
+		if (res) {
+			console.log(res);
+		}
 	});
