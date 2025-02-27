@@ -112,7 +112,7 @@ class Database {
 						}
 					});
 			} else {
-				reject(new Error("Não há uma conexão com banco de dados."));
+				return reject(new Error("Não há uma conexão com banco de dados."));
 			}
 		});
 	}

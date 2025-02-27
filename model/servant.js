@@ -16,6 +16,7 @@ class Servant {
 	async queryByCPF(cpf) {
 		db.open();
 		let rows = await db.queryByAttribute(tableName, "cpf", cpf);
+		console.log(rows);
 		db.close();
 		return rows;
 	}
@@ -55,48 +56,44 @@ class Servant {
 		let res = await db.alterAttributeValue(tableName, "cpf", newCpf, "cpf", cpf);
 		db.close();
 	}
+
+	/* Métodos para deleção. */
+	async delete(cpf) {
+		db.open();
+		let res = await db.deleteEntry(tableName, "cpf", cpf);
+		db.close();
+		return res;
+	}
 }
 
 let srv = new Servant();
-//srv.addNewServant("00000000003", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1);
-//srv.queryByCPF("00000000003").then((rows) => {
-//	console.log(rows);
-//});
-//srv.queryByName("Pessoa").then((rows) => {
-//	console.log(rows);
-//});
-//srv.queryByPhoneNumber("000000000000000").then((rows) => {
-//	console.log(rows);
-//});
-//srv.queryByEmailAddress("test@test.com").then((rows) => {
-//	console.log(rows);
-//});
-//srv.queryByPrivilege(1).then((rows) => {
-//	console.log(rows);
-//});
 
-
-// srv.addNewServant("00000000007", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1)
-// 	.then((res) => {
-// 		if (res) {
-// 			console.log("Usuário adicionado com êxito.");
-// 		}
-// 	});
-srv.queryByCPF("00000000009")
-	.then((rows) => {
-		console.log(rows);
-	});
-
-srv.alterCPF("00000000009", "000000000010")
+srv.addNewServant("00000000007", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1)
 	.then((res) => {
 		if (res) {
-			console.log("CPF alterado com êxito.");
+			console.log("Usuário adicionado com êxito.");
 		}
 	});
-
-srv.queryByCPF("000000000010")
+srv.queryByCPF("00000000007")
 	.then((res) => {
-		if (res) {
-			console.log(res);
-		}
+		console.log(res);
 	});
+//
+//srv.delete("00000000009")
+//	.then((res) => {
+//		if (res) {
+//			console.log(res);
+//		}
+//	});
+//
+//srv.queryByCPF("00000000009")
+//	.then((rows) => {
+//		console.log(rows);
+//	});
+
+//srv.queryByCPF("000000000010")
+//	.then((res) => {
+//		if (res) {
+//			console.log(res);
+//		}
+//	});
