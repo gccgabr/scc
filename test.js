@@ -1,8 +1,6 @@
 "use strict";
 
 const db = require("./utils/database");
-const { DatabaseSync } = require("sqlite");
-const database = new DatabaseSync(":memory:");
 
 //db.open();
 //db.queryAll("Servant").then(rows => {
@@ -23,14 +21,11 @@ const database = new DatabaseSync(":memory:");
 //db.deleteEntry("Servant", "cpf", "00000000000");
 //db.close();
 
-//(async() => {
-//	await db.open();
-//	await db.close();
-//	await db.open();
-//	await db.close();
-//})();
-
+db.open();
+db.close();
+db.open();
 //db.open();
+db.close();
 //db.close();
 
 //console.log(db.status);
