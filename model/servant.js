@@ -5,7 +5,7 @@ const tableName = "Servant";
 
 class Servant {
 	// Adicionar novo servidor.
-	async addNewServant(cpf, name, phone, email, hashedPassword, isAdmin) {
+	async add(cpf, name, phone, email, hashedPassword, isAdmin) {
 		db.open();
 		let res = await db.addEntry(tableName, [cpf, name, phone, email, hashedPassword, isAdmin]);
 		db.close();
@@ -68,7 +68,7 @@ class Servant {
 
 let srv = new Servant();
 
-srv.addNewServant("00000000007", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1)
+srv.add("00000000007", "Pessoa", "000000000000000", "test@test.com", "h4sh3d", 1)
 	.then((res) => {
 		if (res) {
 			console.log("Usuário adicionado com êxito.");
