@@ -52,8 +52,29 @@ const getAllUsers = () => {
 	});
 };
 
-//createNewUser("00000000000", "Teste", "teste@teste.com", "000000000000", 0, "h4sh3d");
-//let result = getAllUsers();
-//let result = getUserByCpf("00000000000");
-//let result = getUsersByName("Teste");
-let result = getUsersByRole(0);
+// Update.
+const updateUser = (cpf, newCpf, newName, newEmail, newPhone, newRole, newHashedPassword) => {
+	let query = `UPDATE User
+		SET cpf = ?, name = ?, email = ?, phone = ?, role = ?, hashed_password = ?
+		WHERE cpf = ?`;
+	let query_values = [newCpf, newName, newEmail, newPhone, newRole, newHashedPassword, cpf];
+	db.run(query, query_values, (err) => {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("Successo.");
+		}
+	});
+};
+
+// Delete.
+const deleteUser = (cpf) => {
+	let query = "DELETE FROM User WHERE cpf = ?";
+	db.run(query, [cpf], (err) => {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("Sucesso.");
+		}
+	});
+};
