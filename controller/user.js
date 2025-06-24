@@ -17,12 +17,30 @@ const createNewUser = (cpf, name, email, phone, role, hashed_password) => {
 
 // Read.
 const getUserByCpf = (cpf) => {
+	db.all("SELECT * FROM User WHERE cpf=?", [cpf], (err, rows) => {
+		if (err) {
+			return err;
+		}
+		console.log(rows);
+	});
 };
 
 const getUsersByName = (name) => {
+	db.all("SELECT * FROM User WHERE name=?", [name], (err, rows) => {
+		if (err) {
+			return err;
+		}
+		console.log(rows);
+	});
 };
 
 const getUsersByRole = (role) => {
+	db.all("SELECT * FROM User WHERE role=?", [role], (err, rows) => {
+		if (err) {
+			return err;
+		}
+		console.log(rows);
+	});
 };
 
 const getAllUsers = () => {
@@ -31,9 +49,11 @@ const getAllUsers = () => {
 			return err;
 		}
 		console.log(rows);
-		return rows;
 	});
 };
 
 //createNewUser("00000000000", "Teste", "teste@teste.com", "000000000000", 0, "h4sh3d");
-let result = getAllUsers();
+//let result = getAllUsers();
+//let result = getUserByCpf("00000000000");
+//let result = getUsersByName("Teste");
+let result = getUsersByRole(0);
