@@ -1,0 +1,28 @@
+{
+  "name": "scc",
+  "version": "1.0.0",
+  "description": "Sistema de Controle de Chaves",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gccgabr/scc.git"
+  },
+  "keywords": [
+    "scc"
+  ],
+  "author": "Gabriel Costa Chaves",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/gccgabr/scc/issues"
+  },
+  "homepage": "https://github.com/gccgabr/scc#readme",
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
+}
