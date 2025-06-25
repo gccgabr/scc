@@ -29,7 +29,19 @@ const getKeyByCode = async (code) => {
 	});
 };
 
-getKeyByCode(1)
+const getKeyBySectionCode = async (sectionCode) => {
+	let db = await getDB();
+	let query = "SELECT * FROM Key WHERE section_code = ?";
+	let query_values = [sectionCode];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+}
+
+getKeyBySectionCode(0)
 	.then(result => {
 		console.log(result);
 	})
