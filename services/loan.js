@@ -16,14 +16,6 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 	});
 };
 
-//createNewLoan(0, 1, 1, "00000000000")
-//	.then(result => {
-//		console.log(result);
-//	})
-//	.catch(error => {
-//		console.log(error);
-//	});
-
 // Read.
 const getLoanByCode = async (code) => {
 	let db = await getDB();
@@ -91,3 +83,12 @@ const deleteLoan = async (code) => {
 		return true;
 	});
 }
+
+module.exports = {
+	createNewLoan,
+	getLoanByCode,
+	getLoanBySectionCode,
+	getLoanByUserCpf,
+	setLoanOverdue,
+	deleteLoan
+};
