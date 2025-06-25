@@ -91,19 +91,3 @@ const deleteLoan = async (code) => {
 		return true;
 	});
 }
-
-//deleteLoan(0)
-//	.then(result => {
-//		console.log(result);
-//	})
-//	.catch(error => {
-//		console.log(error);
-//	});
-
-getLoanByUserCpf("00000000000")
-	.then(result => {
-		console.log(result);
-	})
-	.catch(error => {
-		console.log(error);
-	});
