@@ -1,3 +1,9 @@
+# Sistema de Controle de Chaves
+## Ferramentas (_backend_)
+- NodeJS
+- ExpressJS
+- SQLite
+
 #### Banco de Dados
 - [x] Definição das entidades
 - [x] Modelo conceitual.
@@ -15,7 +21,7 @@
 - [ ] Key.
 - [ ] Loan.
 
-#### API
+#### API (Regramento feito com ExpressJS)
 - [ ] *Middlewares* (manejo das requisições e respostas).
 - [ ] Rotas.
 - [ ] Registro de eventos.
