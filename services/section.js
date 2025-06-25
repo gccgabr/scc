@@ -28,6 +28,18 @@ const getSectionByUserCpf = async (user_cpf) => {
 	});
 };
 
+const getSectionByName = async (name) => {
+	let db = await getDB();
+	let query = "SELECT * FROM Section WHERE name = ?";
+	let query_values = [name];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return rows;
+	});
+};
+
 //createNewSection("IEG", "00000000000")
 //	.then(result => {
 //		console.log(result);
@@ -36,7 +48,7 @@ const getSectionByUserCpf = async (user_cpf) => {
 //		console.log(error);
 //	});
 
-getSectionByUserCpf("00000000000")
+getSectionByName("IEG")
 	.then(result => {
 		console.log(result);
 	})
