@@ -1,80 +1,103 @@
 "use strict";
 
-const sqlite3 = require("sqlite3");
-let db = new sqlite3.Database("../scc.db", (err) => {
-	if (err) {
-		return console.error(err);
-	}
-	console.log("Success!");
-});
+const { getDB, closeDB } = require("../database/db.js");
 
 // Create.
-const createNewUser = (cpf, name, email, phone, role, hashed_password) => {
+const createNewUser = async (cpf, name, email, phone, role, hashed_password) => {
 	let insert_query = "INSERT INTO User(cpf, name, email, phone, role, hashed_password) VALUES(?, ?, ?, ?, ?, ?)";
 	let query_values = [cpf, name, email, phone, role, hashed_password];
-	db.run(insert_query, query_values);
+	let db = await getDB();
+	return await db.run(insert_query, [query_values], (err) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
 };
 
 // Read.
-const getUserByCpf = (cpf) => {
-	db.all("SELECT * FROM User WHERE cpf=?", [cpf], (err, rows) => {
+const getUserByCpf = async (cpf) => {
+	let db = await getDB();
+	return await db.all("SELECT * FROM User WHERE cpf=?", [cpf], (err, rows) => {
 		if (err) {
 			return err;
 		}
-		console.log(rows);
+		return rows;
 	});
 };
 
-const getUsersByName = (name) => {
-	db.all("SELECT * FROM User WHERE name=?", [name], (err, rows) => {
+const getUsersByName = async (name) => {
+	let db = await getDB();
+	return await db.all("SELECT * FROM User WHERE name=?", [name], (err, rows) => {
 		if (err) {
 			return err;
 		}
-		console.log(rows);
+		return rows;
 	});
 };
 
-const getUsersByRole = (role) => {
-	db.all("SELECT * FROM User WHERE role=?", [role], (err, rows) => {
+const getUsersByRole = async (role) => {
+	let db = await getDB();
+	return await db.all("SELECT * FROM User WHERE role=?", [role], (err, rows) => {
 		if (err) {
 			return err;
 		}
-		console.log(rows);
+		return rows;
 	});
 };
 
-const getAllUsers = () => {
-	db.all("SELECT * FROM User", [], (err, rows) => {
+const getAllUsers = async () => {
+	let db = await getDB();
+	let result = await db.all("SELECT * FROM User", [], (err, rows) => {
 		if (err) {
 			return err;
 		}
-		console.log(rows);
+		return rows;
 	});
+	return result;
 };
 
 // Update.
-const updateUser = (cpf, newCpf, newName, newEmail, newPhone, newRole, newHashedPassword) => {
+const updateUser = async (cpf, newCpf, newName, newEmail, newPhone, newRole, newHashedPassword) => {
 	let query = `UPDATE User
 		SET cpf = ?, name = ?, email = ?, phone = ?, role = ?, hashed_password = ?
 		WHERE cpf = ?`;
 	let query_values = [newCpf, newName, newEmail, newPhone, newRole, newHashedPassword, cpf];
-	db.run(query, query_values, (err) => {
+	let db = await getDB();
+	return await db.run(query, query_values, (err) => {
 		if (err) {
-			console.log(err);
+			return err;
 		} else {
-			console.log("Successo.");
+			return true;
 		}
 	});
 };
 
 // Delete.
-const deleteUser = (cpf) => {
+const deleteUser = async (cpf) => {
 	let query = "DELETE FROM User WHERE cpf = ?";
-	db.run(query, [cpf], (err) => {
+	let db = await getDB();
+	return await db.run(query, [cpf], (err) => {
 		if (err) {
-			console.log(err);
+			return err;
 		} else {
-			console.log("Sucesso.");
+			return true;
 		}
 	});
 };
+
+createNewUser("00000000000", "Teste", "teste", "000000000000", 0, "h4sh3d")
+	.then(result => {
+		console.log(result);
+	})
+	.catch(error => {
+		console.log(error);
+	});
+
+//getAllUsers()
+//	.then(users => {
+//		console.log(users);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
