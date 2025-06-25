@@ -5,9 +5,9 @@ const { getDB, closeDB } = require("../database/db.js");
 // Create.
 const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 	let db = await getDB();
-	let timestamp = Date.now();
-	let query = "INSERT INTO Loan VALUES (?, ?, ?, ?, ?)";
-	let query_values = [code, timestamp, keyCode, sectionCode, userCpf];
+	let start_timestamp = Date.now();
+	let query = "INSERT INTO Loan VALUES (?, ?, ?, ?, ?, ?)";
+	let query_values = [code, start_timestamp, null, keyCode, sectionCode, userCpf];
 	return await db.run(query, query_values, (err) => {
 		if (err) {
 			return err;
@@ -16,13 +16,13 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 	});
 };
 
-//createNewLoan(0, 1, 1, "00000000000")
-//	.then(result => {
-//		console.log(result);
-//	})
-//	.catch(error => {
-//		console.log(error);
-//	});
+createNewLoan(0, 1, 1, "00000000000")
+	.then(result => {
+		console.log(result);
+	})
+	.catch(error => {
+		console.log(error);
+	});
 
 // Read.
 const getLoanByCode = async (code) => {
@@ -65,26 +65,14 @@ const getLoanByUserCpf = async (userCpf) => {
 	});
 };
 
-getLoanByUserCpf("00000000000")
-	.then(result => {
-		console.log(result);
-	})
-	.catch(error => {
-		console.log(error);
-	});
-
-//const getKeyByStatus = async (keyStatus) => {
-//	let db = await getDB();
-//	let query = "SELECT * FROM Key WHERE status = ?";
-//	let query_values = [keyStatus];
-//	return await db.all(query, query_values, (err, rows) => {
-//		if (err) {
-//			return err;
-//		}
-//		return true;
+//getLoanByUserCpf("00000000000")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
 //	});
-//};
-//
+
 //// Update.
 //const updateKey = async (code, newCode, newRoomName, newStatus, newSectionCode) => {
 //	let db = await getDB();
