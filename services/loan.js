@@ -79,7 +79,20 @@ const setLoanOverdue = async (code) => {
 	});
 }
 
-//setLoanOverdue(0)
+// Delete.
+const deleteLoan = async (code) => {
+	let db = await getDB();
+	let query = "DELETE FROM Loan WHERE code = ?";
+	let query_values = [code];
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+}
+
+//deleteLoan(0)
 //	.then(result => {
 //		console.log(result);
 //	})
@@ -94,16 +107,3 @@ getLoanByUserCpf("00000000000")
 	.catch(error => {
 		console.log(error);
 	});
-
-//// Delete.
-//const deleteKey = async (code) => {
-//	let db = await getDB();
-//	let query = "DELETE FROM Key WHERE code = ?";
-//	let query_values = [code];
-//	return await db.run(query, query_values, (err) => {
-//		if (err) {
-//			return err;
-//		}
-//		return true;
-//	});
-//}
