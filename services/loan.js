@@ -16,13 +16,13 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 	});
 };
 
-createNewLoan(0, 1, 1, "00000000000")
-	.then(result => {
-		console.log(result);
-	})
-	.catch(error => {
-		console.log(error);
-	});
+//createNewLoan(0, 1, 1, "00000000000")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
 
 // Read.
 const getLoanByCode = async (code) => {
@@ -65,20 +65,12 @@ const getLoanByUserCpf = async (userCpf) => {
 	});
 };
 
-//getLoanByUserCpf("00000000000")
-//	.then(result => {
-//		console.log(result);
-//	})
-//	.catch(error => {
-//		console.log(error);
-//	});
-
 //// Update.
 /* A atualização dos dados de empréstimo deve possibilitar, precipuamente, a finalização do empréstimo. */
-const updateLoan = async (code, newCode, newRoomName, newStatus, newSectionCode) => {
+const setLoanOverdue = async (code) => {
 	let db = await getDB();
-	let query = "UPDATE Key SET code = ?, room_name = ?, status = ?, section_code = ? WHERE code = ?";
-	let query_values = [newCode, newRoomName, newStatus, newSectionCode, code];
+	let query = "UPDATE Loan SET overdue = 1 WHERE code = ?";
+	let query_values = [code];
 	return await db.run(query, query_values, (err) => {
 		if (err) {
 			return err;
@@ -86,6 +78,22 @@ const updateLoan = async (code, newCode, newRoomName, newStatus, newSectionCode)
 		return true;
 	});
 }
+
+//setLoanOverdue(0)
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+
+getLoanByUserCpf("00000000000")
+	.then(result => {
+		console.log(result);
+	})
+	.catch(error => {
+		console.log(error);
+	});
 
 //// Delete.
 //const deleteKey = async (code) => {
