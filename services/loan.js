@@ -6,8 +6,8 @@ const { getDB, closeDB } = require("../database/db.js");
 const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 	let db = await getDB();
 	let start_timestamp = Date.now();
-	let query = "INSERT INTO Loan VALUES (?, ?, ?, ?, ?, ?)";
-	let query_values = [code, start_timestamp, null, keyCode, sectionCode, userCpf];
+	let query = "INSERT INTO Loan VALUES (?, ?, ?, ?, ?, ?, ?)";
+	let query_values = [code, start_timestamp, null, 0, keyCode, sectionCode, userCpf];
 	return await db.run(query, query_values, (err) => {
 		if (err) {
 			return err;
@@ -74,18 +74,19 @@ const getLoanByUserCpf = async (userCpf) => {
 //	});
 
 //// Update.
-//const updateKey = async (code, newCode, newRoomName, newStatus, newSectionCode) => {
-//	let db = await getDB();
-//	let query = "UPDATE Key SET code = ?, room_name = ?, status = ?, section_code = ? WHERE code = ?";
-//	let query_values = [newCode, newRoomName, newStatus, newSectionCode, code];
-//	return await db.run(query, query_values, (err) => {
-//		if (err) {
-//			return err;
-//		}
-//		return true;
-//	});
-//}
-//
+/* A atualização dos dados de empréstimo deve possibilitar, precipuamente, a finalização do empréstimo. */
+const updateLoan = async (code, newCode, newRoomName, newStatus, newSectionCode) => {
+	let db = await getDB();
+	let query = "UPDATE Key SET code = ?, room_name = ?, status = ?, section_code = ? WHERE code = ?";
+	let query_values = [newCode, newRoomName, newStatus, newSectionCode, code];
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+}
+
 //// Delete.
 //const deleteKey = async (code) => {
 //	let db = await getDB();
