@@ -7,7 +7,7 @@ const createNewUser = async (cpf, name, email, phone, role, hashed_password) => 
 	let insert_query = "INSERT INTO User(cpf, name, email, phone, role, hashed_password) VALUES(?, ?, ?, ?, ?, ?)";
 	let query_values = [cpf, name, email, phone, role, hashed_password];
 	let db = await getDB();
-	return await db.run(insert_query, [query_values], (err) => {
+	return await db.run(insert_query, query_values, (err) => {
 		if (err) {
 			return err;
 		}
@@ -86,7 +86,7 @@ const deleteUser = async (cpf) => {
 	});
 };
 
-createNewUser("00000000000", "Teste", "teste", "000000000000", 0, "h4sh3d")
+createNewUser("11111111111", "Teste", "teste", "000000000000", 0, "h4sh3d")
 	.then(result => {
 		console.log(result);
 	})
