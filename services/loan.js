@@ -16,7 +16,28 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 	});
 };
 
-createNewLoan(0, 1, 1, "000000000")
+//createNewLoan(0, 1, 1, "000000000")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+
+// Read.
+const getLoanByCode = async (code) => {
+	let db = await getDB();
+	let query = "SELECT * FROM Loan WHERE code = ?";
+	let query_values = [code];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return rows;
+	});
+};
+
+getLoanByCode(0)
 	.then(result => {
 		console.log(result);
 	})
@@ -24,19 +45,6 @@ createNewLoan(0, 1, 1, "000000000")
 		console.log(error);
 	});
 
-//// Read.
-//const getKeyByCode = async (code) => {
-//	let db = await getDB();
-//	let query = "SELECT * FROM Key WHERE code = ?";
-//	let query_values = [code];
-//	return await db.all(query, query_values, (err, rows) => {
-//		if (err) {
-//			return err;
-//		}
-//		return rows;
-//	});
-//};
-//
 //const getKeyBySectionCode = async (sectionCode) => {
 //	let db = await getDB();
 //	let query = "SELECT * FROM Key WHERE section_code = ?";
