@@ -103,17 +103,33 @@ const deleteUser = async (cpf) => {
 //		console.log(error);
 //	});
 
-updateUser("11111111111", "00000000000", "Teste", "teste", "000000000000", 0, "h4sh3d")
+//updateUser("11111111111", "00000000000", "Teste", "teste", "000000000000", 0, "h4sh3d")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+//
+//getAllUsers()
+//	.then(users => {
+//		console.log(users);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+
+
+getUsersByRole(0)
 	.then(result => {
 		console.log(result);
 	})
 	.catch(error => {
 		console.log(error);
 	});
-
-getAllUsers()
-	.then(users => {
-		console.log(users);
+getUsersByRole(1)
+	.then(result => {
+		console.log(result);
 	})
 	.catch(error => {
 		console.log(error);
