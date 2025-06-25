@@ -65,16 +65,6 @@ const getKeyByStatus = async (keyStatus) => {
 	});
 };
 
-//createNewKey("0", "SALA 1", 0, 1)
-//	.then(result => {
-//		console.log(result);
-//	})
-//	.catch(error => {
-//		console.log(error);
-//	});
-
-
-
 // Update.
 const updateKey = async (code, newCode, newRoomName, newStatus, newSectionCode) => {
 	let db = await getDB();
@@ -88,14 +78,6 @@ const updateKey = async (code, newCode, newRoomName, newStatus, newSectionCode) 
 	});
 }
 
-getKeyByStatus(1)
-	.then(result => {
-		console.log(result);
-	})
-	.catch(error => {
-		console.log(error);
-	});
-
 // Delete.
 const deleteKey = async (code) => {
 	let db = await getDB();
@@ -108,12 +90,3 @@ const deleteKey = async (code) => {
 		return true;
 	});
 }
-
-deleteKey(1)
-	.then(result => {
-		console.log(result);
-	})
-	.catch(error => {
-		console.log(error);
-	});
-
