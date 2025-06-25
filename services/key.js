@@ -88,14 +88,6 @@ const updateKey = async (code, newCode, newRoomName, newStatus, newSectionCode) 
 	});
 }
 
-//updateKey(0, 1, "SALA 1", 1, 0)
-//	.then(result => {
-//		console.log(result);
-//	})
-//	.catch(error => {
-//		console.log(error);
-//	});
-
 getKeyByStatus(1)
 	.then(result => {
 		console.log(result);
@@ -104,15 +96,24 @@ getKeyByStatus(1)
 		console.log(error);
 	});
 
-//// Delete.
-//const deleteSection = async (code) => {
-//	let db = await getDB();
-//	let query = "DELETE FROM Section WHERE code = ?";
-//	let query_values = [code];
-//	return await db.run(query, query_values, (err) => {
-//		if (err) {
-//			return err;
-//		}
-//		return true;
-//	});
-//}
+// Delete.
+const deleteKey = async (code) => {
+	let db = await getDB();
+	let query = "DELETE FROM Key WHERE code = ?";
+	let query_values = [code];
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+}
+
+deleteKey(1)
+	.then(result => {
+		console.log(result);
+	})
+	.catch(error => {
+		console.log(error);
+	});
+
