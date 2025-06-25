@@ -120,14 +120,14 @@ const deleteUser = async (cpf) => {
 //	});
 
 
-getUsersByRole(0)
+getUsersByName("Teste")
 	.then(result => {
 		console.log(result);
 	})
 	.catch(error => {
 		console.log(error);
 	});
-getUsersByRole(1)
+getUserByCpf("00000000000")
 	.then(result => {
 		console.log(result);
 	})
