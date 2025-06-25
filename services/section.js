@@ -40,6 +40,18 @@ const getSectionByName = async (name) => {
 	});
 };
 
+const getSectionByCode = async (code) => {
+	let db = await getDB();
+	let query = "SELECT * FROM Section WHERE code = ?";
+	let query_values = [code];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return rows;
+	});
+}
+
 //createNewSection("IEG", "00000000000")
 //	.then(result => {
 //		console.log(result);
@@ -48,7 +60,21 @@ const getSectionByName = async (name) => {
 //		console.log(error);
 //	});
 
-getSectionByName("IEG")
+getSectionByCode(1)
+	.then(result => {
+		console.log(result);
+	})
+	.catch(error => {
+		console.log(error);
+	});
+getSectionByCode(2)
+	.then(result => {
+		console.log(result);
+	})
+	.catch(error => {
+		console.log(error);
+	});
+getSectionByCode(3)
 	.then(result => {
 		console.log(result);
 	})
