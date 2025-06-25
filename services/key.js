@@ -16,13 +16,27 @@ const createNewKey = async (code, sectionCode, roomName, keyStatus) => {
 	});
 };
 
-createNewKey("1", 1, "SALA 1", 0)
+// Read.
+const getKeyByCode = async (code) => {
+	let db = await getDB();
+	let query = "SELECT * FROM Key WHERE code = ?";
+	let query_values = [code];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return rows;
+	});
+};
+
+getKeyByCode(1)
 	.then(result => {
 		console.log(result);
 	})
 	.catch(error => {
 		console.log(error);
 	});
+
 
 //// Read.
 //const getSectionByUserCpf = async (user_cpf) => {
