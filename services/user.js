@@ -86,18 +86,18 @@ const deleteUser = async (cpf) => {
 	});
 };
 
-createNewUser("11111111111", "Teste", "teste", "000000000000", 0, "h4sh3d")
-	.then(result => {
-		console.log(result);
-	})
-	.catch(error => {
-		console.log(error);
-	});
-
-//getAllUsers()
-//	.then(users => {
-//		console.log(users);
+//createNewUser("11111111111", "Teste", "teste", "000000000000", 0, "h4sh3d")
+//	.then(result => {
+//		console.log(result);
 //	})
 //	.catch(error => {
 //		console.log(error);
 //	});
+//
+getAllUsers()
+	.then(users => {
+		console.log(users);
+	})
+	.catch(error => {
+		console.log(error);
+	});
