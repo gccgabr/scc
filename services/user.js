@@ -95,7 +95,15 @@ const deleteUser = async (cpf) => {
 //	});
 //
 
-deleteUser("00000000000")
+//deleteUser("00000000000")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+
+updateUser("11111111111", "00000000000", "Teste", "teste", "000000000000", 0, "h4sh3d")
 	.then(result => {
 		console.log(result);
 	})
