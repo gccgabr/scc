@@ -53,21 +53,21 @@ const getKeyByRoomName = async (roomName) => {
 	});
 };
 
-createNewKey("0", "SALA 1", 0, 1)
-	.then(result => {
-		console.log(result);
-	})
-	.catch(error => {
-		console.log(error);
-	});
-
-//getKeyByRoomName("SALA 1")
+//createNewKey("0", "SALA 1", 0, 1)
 //	.then(result => {
 //		console.log(result);
 //	})
 //	.catch(error => {
 //		console.log(error);
 //	});
+
+getKeyByRoomName("SALA 1")
+	.then(result => {
+		console.log(result);
+	})
+	.catch(error => {
+		console.log(error);
+	});
 
 
 //// Read.
