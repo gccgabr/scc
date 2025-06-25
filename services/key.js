@@ -90,3 +90,13 @@ const deleteKey = async (code) => {
 		return true;
 	});
 }
+
+module.exports = {
+	createNewKey,
+	getKeyByCode,
+	getKeyBySectionCode,
+	getKeyByRoomName,
+	getKeyByStatus,
+	updateKey,
+	deleteKey
+};

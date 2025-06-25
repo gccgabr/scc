@@ -85,3 +85,65 @@ const deleteUser = async (cpf) => {
 		}
 	});
 };
+<<<<<<< HEAD
+=======
+
+module.exports = {
+	createNewUser,
+	getUserByCpf,
+	getUserByName,
+	getUserByRole,
+	getAllUsers,
+	updateUser,
+	deleteUser
+}
+
+//createNewUser("11111111111", "Teste", "teste", "000000000000", 0, "h4sh3d")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+//
+
+//deleteUser("00000000000")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+
+//updateUser("11111111111", "00000000000", "Teste", "teste", "000000000000", 0, "h4sh3d")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+//
+//getAllUsers()
+//	.then(users => {
+//		console.log(users);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+
+
+//getUsersByName("Teste")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+//getUserByCpf("00000000000")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+>>>>>>> a4b1c79 (Exportação das funções.)

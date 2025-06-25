@@ -78,6 +78,15 @@ const deleteSection = async (code) => {
 	});
 }
 
+module.exports = {
+	createNewSection,
+	getSectionByUserCPF,
+	getSectionByName,
+	getSectionByCode,
+	updateSection,
+	deleteSection
+};
+
 //createNewSection("IEG", "00000000000")
 //	.then(result => {
 //		console.log(result);
@@ -86,18 +95,18 @@ const deleteSection = async (code) => {
 //		console.log(error);
 //	});
 
-getSectionByCode(1)
-	.then(result => {
-		console.log(result);
-	})
-	.catch(error => {
-		console.log(error);
-	});
-
-deleteSection(1)
-	.then(result => {
-		console.log(result);
-	})
-	.catch(error => {
-		console.log(error);
-	});
+//getSectionByCode(1)
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+//
+//deleteSection(1)
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
