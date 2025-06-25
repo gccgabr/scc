@@ -4,10 +4,10 @@ const { getDB, closeDB } = require("../database/db.js");
 
 
 // Create.
-const createNewKey = async (code, sectionCode, roomName, keyStatus) => {
+const createNewKey = async (code, roomName, keyStatus, sectionCode) => {
 	let db = await getDB();
 	let query = "INSERT INTO Key VALUES (?, ?, ?, ?)";
-	let query_values = [code, sectionCode, roomName, keyStatus];
+	let query_values = [code, roomName, keyStatus, sectionCode];
 	return await db.run(query, query_values, (err) => {
 		if (err) {
 			return err;
@@ -41,13 +41,33 @@ const getKeyBySectionCode = async (sectionCode) => {
 	});
 }
 
-getKeyBySectionCode(0)
+const getKeyByRoomName = async (roomName) => {
+	let db = await getDB();
+	let query = "SELECT * FROM Key WHERE room_name = ?";
+	let query_values = [roomName];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+};
+
+createNewKey("0", "SALA 1", 0, 1)
 	.then(result => {
 		console.log(result);
 	})
 	.catch(error => {
 		console.log(error);
 	});
+
+//getKeyByRoomName("SALA 1")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
 
 
 //// Read.
