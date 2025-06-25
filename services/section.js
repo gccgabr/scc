@@ -65,6 +65,19 @@ const updateSection = async (code, newName, newUserCpf) => {
 	});
 }
 
+// Delete.
+const deleteSection = async (code) => {
+	let db = await getDB();
+	let query = "DELETE FROM Section WHERE code = ?";
+	let query_values = [code];
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+}
+
 //createNewSection("IEG", "00000000000")
 //	.then(result => {
 //		console.log(result);
@@ -81,15 +94,7 @@ getSectionByCode(1)
 		console.log(error);
 	});
 
-updateSection(1, "ICED", "00000000000")
-	.then(result => {
-		console.log(result);
-	})
-	.catch(error => {
-		console.log(error);
-	});
-
-getSectionByCode(1)
+deleteSection(1)
 	.then(result => {
 		console.log(result);
 	})
