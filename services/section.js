@@ -52,6 +52,19 @@ const getSectionByCode = async (code) => {
 	});
 }
 
+// Update.
+const updateSection = async (code, newName, newUserCpf) => {
+	let db = await getDB();
+	let query = "UPDATE Section SET name = ?, user_cpf = ? WHERE code = ?";
+	let query_values = [newName, newUserCpf, code];
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+}
+
 //createNewSection("IEG", "00000000000")
 //	.then(result => {
 //		console.log(result);
@@ -67,14 +80,16 @@ getSectionByCode(1)
 	.catch(error => {
 		console.log(error);
 	});
-getSectionByCode(2)
+
+updateSection(1, "ICED", "00000000000")
 	.then(result => {
 		console.log(result);
 	})
 	.catch(error => {
 		console.log(error);
 	});
-getSectionByCode(3)
+
+getSectionByCode(1)
 	.then(result => {
 		console.log(result);
 	})
