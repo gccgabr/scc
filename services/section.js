@@ -15,7 +15,28 @@ const createNewSection = async (name, user_cpf) => {
 	});
 };
 
-createNewSection("IEG", "000000000")
+// Read.
+const getSectionByUserCpf = async (user_cpf) => {
+	let db = await getDB();
+	let query = "SELECT * FROM Section WHERE user_cpf = ?";
+	let query_values = [user_cpf];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return rows;
+	});
+};
+
+//createNewSection("IEG", "00000000000")
+//	.then(result => {
+//		console.log(result);
+//	})
+//	.catch(error => {
+//		console.log(error);
+//	});
+
+getSectionByUserCpf("00000000000")
 	.then(result => {
 		console.log(result);
 	})
