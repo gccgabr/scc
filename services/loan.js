@@ -16,7 +16,7 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 	});
 };
 
-//createNewLoan(0, 1, 1, "000000000")
+//createNewLoan(0, 1, 1, "00000000000")
 //	.then(result => {
 //		console.log(result);
 //	})
@@ -51,7 +51,21 @@ const getLoanBySectionCode = async (sectionCode) => {
 	});
 }
 
-getLoanBySectionCode(1)
+/* A consulta de empréstimos por CPF de usuário deve possibilitar saber quais
+ * empréstimos pertencem a um usuário específico. */
+const getLoanByUserCpf = async (userCpf) => {
+	let db = await getDB();
+	let query = "SELECT * FROM Loan WHERE user_cpf = ?";
+	let query_values = [userCpf];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+};
+
+getLoanByUserCpf("00000000000")
 	.then(result => {
 		console.log(result);
 	})
@@ -59,19 +73,6 @@ getLoanBySectionCode(1)
 		console.log(error);
 	});
 
-
-//const getKeyByRoomName = async (roomName) => {
-//	let db = await getDB();
-//	let query = "SELECT * FROM Key WHERE room_name = ?";
-//	let query_values = [roomName];
-//	return await db.all(query, query_values, (err, rows) => {
-//		if (err) {
-//			return err;
-//		}
-//		return true;
-//	});
-//};
-//
 //const getKeyByStatus = async (keyStatus) => {
 //	let db = await getDB();
 //	let query = "SELECT * FROM Key WHERE status = ?";
