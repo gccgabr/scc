@@ -1,8 +1,8 @@
 # Sistema de Controle de Chaves
 ## Ferramentas (_backend_)
+- SQLite
 - NodeJS
 - ExpressJS
-- SQLite
 
 #### Banco de Dados
 - [x] Definição das entidades
