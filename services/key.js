@@ -53,6 +53,18 @@ const getKeyByRoomName = async (roomName) => {
 	});
 };
 
+const getKeyByStatus = async (keyStatus) => {
+	let db = await getDB();
+	let query = "SELECT * FROM Key WHERE status = ?";
+	let query_values = [keyStatus];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+};
+
 //createNewKey("0", "SALA 1", 0, 1)
 //	.then(result => {
 //		console.log(result);
@@ -61,7 +73,7 @@ const getKeyByRoomName = async (roomName) => {
 //		console.log(error);
 //	});
 
-getKeyByRoomName("SALA 1")
+getKeyByStatus(0)
 	.then(result => {
 		console.log(result);
 	})
