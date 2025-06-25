@@ -37,7 +37,21 @@ const getLoanByCode = async (code) => {
 	});
 };
 
-getLoanByCode(0)
+/* A consulta de empréstimos por código de seção deve possibilitar saber quais
+ * empréstimos são pertencentes a uma seção específica. */
+const getLoanBySectionCode = async (sectionCode) => {
+	let db = await getDB();
+	let query = "SELECT * FROM Loan WHERE section_code = ?";
+	let query_values = [sectionCode];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+}
+
+getLoanBySectionCode(1)
 	.then(result => {
 		console.log(result);
 	})
@@ -45,18 +59,7 @@ getLoanByCode(0)
 		console.log(error);
 	});
 
-//const getKeyBySectionCode = async (sectionCode) => {
-//	let db = await getDB();
-//	let query = "SELECT * FROM Key WHERE section_code = ?";
-//	let query_values = [sectionCode];
-//	return await db.all(query, query_values, (err, rows) => {
-//		if (err) {
-//			return err;
-//		}
-//		return true;
-//	});
-//}
-//
+
 //const getKeyByRoomName = async (roomName) => {
 //	let db = await getDB();
 //	let query = "SELECT * FROM Key WHERE room_name = ?";
