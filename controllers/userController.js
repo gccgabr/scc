@@ -3,7 +3,13 @@
  * não é ordinariamente retornada pelas funções consulta. */
 "use strict";
 
+const BCRYPT = require("bcrypt");
 const USER = require("../services/user.js");
+const DATA = {
+	cpf: require("../controllers/userData/cpf.js"),
+	email: require("../controllers/userData/email.js"),
+	phone: require("../controllers/userData/phone.js")
+};
 
 /* Para cada dado do usuário, é importado um conjunto de funções para validação e refinamento. */
 
@@ -11,8 +17,47 @@ const USER = require("../services/user.js");
 /* Tratamento e validação dos dados recebidos para realização de operações
  * CRUD. */
 // Create.
-//const createNewUser = async (cpf, name, email, phone, role, hashed_password) => {
-//};
+const createNewUser = async (cpf, name, email, phone, role, password) => {
+	// Validar CPF.
+	if (!DATA.cpf.isValid(cpf))
+		return"ERRO: CPF inválido.";
+
+	// Validar nome.
+	if (!name)
+		return"ERRO: Nome vazio.";
+
+	// Validar endereço de e-mail.
+	if (!DATA.email.isValid(email))
+		return "ERRO: Endereço de e-mail inválido.";
+
+	// Validar número de telefone.
+	if (!DATA.phone.isValid(phone))
+		return"ERRO: Número de telefone inválido.";
+
+	// Validar código de função.
+	if (role < 0 || role > 2)
+		return"ERRO: Código de função inválido.";	
+
+	// Validar senha.
+	if (!password || !password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/))
+		return"ERRO: Senha inválida.";
+
+	// Codificar senha e gravar dados no banco de dados.
+	let saltRounds = 10;
+	return await BCRYPT.hash(password, saltRounds, async (err, hashed_password) => {
+		if (err) {
+			return err;
+		}
+
+		return await USER.createNewUser(cpf, name, email, phone, role, hashed_password)
+			.then(result => {
+				return result;
+			})
+			.catch(error => {
+				return error;
+			});
+	});
+};
 
 // Read.
 // Consulta de usuário por meio de CPF.
@@ -56,4 +101,11 @@ const getUsersByRole = async (role) => {
 		.catch(error => {
 			return error;
 		});
+};
+
+module.exports = {
+	createNewUser,
+	getUserByCpf,
+	getUsersByName,
+	getUsersByRole
 };
