@@ -13,7 +13,13 @@ app.use(express.json());
 // Read.
 app.get("/api/user", (req, res) => {
 	console.log("GET /api/user request.");
-	res.send("HI");
+	getAllUsers()
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
 });
 
 app.listen(port, () => {
