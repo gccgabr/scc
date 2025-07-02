@@ -4,18 +4,7 @@
  * controlador do usuário. A função controladora deverá intermediar o acesso
  * aos dados no banco de dados, e tratar alguns aspectos de segurança. */
 
-// const {
-// 	getAllUsers,
-// 	getUserByCpf,
-// 	getUsersByName,
-// 	getUsersByRole,
-// 	updateUserName,
-// 	updateUserEmail,
-// 	updateUserPhone,
-// 	updateUserRole,
-// 	updateUserHashedPassword
-// } = require("../services/user.js");
-const USER = require("../services/user.js");
+const USER_CONTROLLER = require("../services/user.js");
 
 const express = require("express");
 const app = express();
@@ -28,7 +17,7 @@ app.use(express.json());
 // Obter um vetor de todos os usuários.
 app.get("/api/user", (req, res) => {
 	console.log("GET /api/user request.");
-	getAllUsers()
+	USER_CONTROLLER.getAllUsers()
 		.then(result => {
 			res.send(result);
 		})
@@ -40,7 +29,7 @@ app.get("/api/user", (req, res) => {
 // Consultar um usuário por meio do CPF.
 app.get("/api/user/cpf/:cpf", (req, res) => {
 	console.log("GET /api/user/cpf/:" + req.params.cpf + " request.");
-	getUserByCpf(req.params.cpf)
+	USER_CONTROLLER.getUserByCpf(req.params.cpf)
 		.then(result => {
 			res.send(result);
 		})
@@ -52,7 +41,7 @@ app.get("/api/user/cpf/:cpf", (req, res) => {
 // Consultar usuários por meio de nome.
 app.get("/api/user/name/:name", (req, res) => {
 	console.log("GET /api/user/name/:" + req.params.name + " request.");
-	getUsersByName(req.params.name)
+	USER_CONTROLLER.getUsersByName(req.params.name)
 		.then(result => {
 			res.send(result);
 		})
@@ -64,7 +53,7 @@ app.get("/api/user/name/:name", (req, res) => {
 // Consultar usuários por meio de função.
 app.get("/api/user/role/:role", (req, res) => {
 	console.log("GET /api/user/role/:" + req.params.role + " request.");
-	USER.getUsersByRole(req.params.role)
+	USER_CONTROLLER.getUsersByRole(req.params.role)
 		.then(result => {
 			res.send(result);
 		})
