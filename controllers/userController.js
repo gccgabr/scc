@@ -5,6 +5,9 @@
 
 const USER = require("../services/user.js");
 
+/* Para cada dado do usuário, é importado um conjunto de funções para validação e refinamento. */
+
+
 /* Tratamento e validação dos dados recebidos para realização de operações
  * CRUD. */
 // Create.
