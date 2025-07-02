@@ -91,8 +91,8 @@ const deleteUser = async (cpf) => {
 module.exports = {
 	createNewUser,
 	getUserByCpf,
-	getUserByName,
-	getUserByRole,
+	getUsersByName,
+	getUsersByRole,
 	getAllUsers,
 	updateUser,
 	deleteUser
