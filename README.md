@@ -15,18 +15,18 @@
 - [x] Key.
 - [x] Loan.
 
-#### Controladores
-- [ ] User.
-- [ ] Section.
-- [ ] Key.
-- [ ] Loan.
-
 #### API (Regramento feito com ExpressJS)
 - [ ] *Middlewares* (manejo das requisições e respostas).
 - [ ] Rotas.
 - [ ] Registro de eventos.
 - [ ] Autenticação.
 - [ ] Gerenciamento de erros.
+
+#### Controladores
+- [ ] User.
+- [ ] Section.
+- [ ] Key.
+- [ ] Loan.
 
 #### Interface gráfica (*front-end*)
 [ ... ]
