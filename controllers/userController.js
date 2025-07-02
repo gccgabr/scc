@@ -20,11 +20,11 @@ const DATA = {
 const createNewUser = async (cpf, name, email, phone, role, password) => {
 	// Validar CPF.
 	if (!DATA.cpf.isValid(cpf))
-		return"ERRO: CPF inválido.";
+		return "ERRO: CPF inválido.";
 
 	// Validar nome.
 	if (!name)
-		return"ERRO: Nome vazio.";
+		return "ERRO: Nome vazio.";
 
 	// Validar endereço de e-mail.
 	if (!DATA.email.isValid(email))
@@ -32,15 +32,15 @@ const createNewUser = async (cpf, name, email, phone, role, password) => {
 
 	// Validar número de telefone.
 	if (!DATA.phone.isValid(phone))
-		return"ERRO: Número de telefone inválido.";
+		return "ERRO: Número de telefone inválido.";
 
 	// Validar código de função.
 	if (role < 0 || role > 2)
-		return"ERRO: Código de função inválido.";	
+		return "ERRO: Código de função inválido.";	
 
 	// Validar senha.
 	if (!password || !password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/))
-		return"ERRO: Senha inválida.";
+		return "ERRO: Senha inválida.";
 
 	// Codificar senha e gravar dados no banco de dados.
 	let saltRounds = 10;
@@ -115,6 +115,38 @@ const getAllUsers = async () => {
 		.catch(error => {
 			return error;
 		});
+};
+
+
+// Update.
+// Atualizar nome de usuário.
+const updateUserName = async (cpf, name) => {
+	// Validar novo nome.
+	if (!name) return "ERRO: Nome vazio.";
+	
+	return await USER.updateUserName(cpf, name)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
+};
+
+// Atualizar endereço de e-mail de usuário.
+const updateUserEmail = async (cpf, email) => {
+};
+
+// Atualizar número de telefone de usuário.
+const updateUserPhone = async (cpf, phone) => {
+};
+
+// Atualizar função de usuário.
+const updateUserRole = async (cpf, role) => {
+};
+
+// Atualizar senha de usuário.
+const updateUserHashedPassword = async (cpf, hashed_password) => {
 };
 
 module.exports = {
