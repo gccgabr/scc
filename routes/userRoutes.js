@@ -7,7 +7,8 @@
 const {
 	getAllUsers,
 	getUserByCpf,
-	getUsersByName
+	getUsersByName,
+	getUsersByRole
 } = require("../services/user.js");
 
 const express = require("express");
@@ -32,7 +33,7 @@ app.get("/api/user", (req, res) => {
 
 // Consultar um usuário por meio do CPF.
 app.get("/api/user/cpf/:cpf", (req, res) => {
-	console.log("GET /api/user/:" + req.params.cpf + " request.");
+	console.log("GET /api/user/cpf/:" + req.params.cpf + " request.");
 	getUserByCpf(req.params.cpf)
 		.then(result => {
 			res.send(result);
@@ -44,8 +45,20 @@ app.get("/api/user/cpf/:cpf", (req, res) => {
 
 // Consultar usuários por meio de nome.
 app.get("/api/user/name/:name", (req, res) => {
-	console.log("GET /api/user/:" + req.params.name + " request.");
+	console.log("GET /api/user/name/:" + req.params.name + " request.");
 	getUsersByName(req.params.name)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
+});
+
+// Consultar usuários por meio de função.
+app.get("/api/user/role/:role", (req, res) => {
+	console.log("GET /api/user/role/:" + req.params.role + " request.");
+	getUsersByRole(req.params.role)
 		.then(result => {
 			res.send(result);
 		})
