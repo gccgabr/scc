@@ -4,17 +4,18 @@
  * controlador do usuário. A função controladora deverá intermediar o acesso
  * aos dados no banco de dados, e tratar alguns aspectos de segurança. */
 
-const {
-	getAllUsers,
-	getUserByCpf,
-	getUsersByName,
-	getUsersByRole,
-	updateUserName,
-	updateUserEmail,
-	updateUserPhone,
-	updateUserRole,
-	updateUserHashedPassword
-} = require("../services/user.js");
+// const {
+// 	getAllUsers,
+// 	getUserByCpf,
+// 	getUsersByName,
+// 	getUsersByRole,
+// 	updateUserName,
+// 	updateUserEmail,
+// 	updateUserPhone,
+// 	updateUserRole,
+// 	updateUserHashedPassword
+// } = require("../services/user.js");
+const USER = require("../services/user.js");
 
 const express = require("express");
 const app = express();
@@ -63,7 +64,7 @@ app.get("/api/user/name/:name", (req, res) => {
 // Consultar usuários por meio de função.
 app.get("/api/user/role/:role", (req, res) => {
 	console.log("GET /api/user/role/:" + req.params.role + " request.");
-	getUsersByRole(req.params.role)
+	USER.getUsersByRole(req.params.role)
 		.then(result => {
 			res.send(result);
 		})
