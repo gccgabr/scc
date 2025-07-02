@@ -41,3 +41,7 @@ const isValid = (cpf) => {
 
 	return true;
 };
+
+module.exports = {
+	isValid
+};
