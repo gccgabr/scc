@@ -85,8 +85,6 @@ const deleteUser = async (cpf) => {
 		}
 	});
 };
-<<<<<<< HEAD
-=======
 
 module.exports = {
 	createNewUser,
@@ -146,4 +144,3 @@ module.exports = {
 //	.catch(error => {
 //		console.log(error);
 //	});
->>>>>>> a4b1c79 (Exportação das funções.)
