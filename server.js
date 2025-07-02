@@ -11,5 +11,5 @@ const port = 3000;
 
 // Início do sistema.
 app.listen(port, () => {
-	console.log("Escutando em on http://localhost:", port);
+	console.log("Escutando em on http://localhost:" + port);
 });
