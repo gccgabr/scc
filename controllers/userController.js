@@ -62,7 +62,7 @@ const createNewUser = async (cpf, name, email, phone, role, password) => {
 // Read.
 // Consulta de usuário por meio de CPF.
 const getUserByCpf = async (cpf) => {
-	USER.getUserByCpf(cpf)
+	return await USER.getUserByCpf(cpf)
 		.then(result => {
 			if (result.length > 0) {
 				delete result[0]["hashed_password"]; // Remoção da senha codificada.
@@ -77,7 +77,7 @@ const getUserByCpf = async (cpf) => {
 
 // Consulta de usuários por meio de nome.
 const getUsersByName = async (name) => {
-	USER.getUsersByName(name)
+	return await USER.getUsersByName(name)
 		.then(result => {
 			if (result.length > 0) {
 				result.forEach((obj) => { delete obj.hashed_password });
@@ -91,7 +91,21 @@ const getUsersByName = async (name) => {
 					
 // Consulta de usuários por meio de função.
 const getUsersByRole = async (role) => {
-	USER.getUsersByRole(role)
+	return await USER.getUsersByRole(role)
+		.then(result => {
+			if (result.length > 0) {
+				result.forEach((obj) => { delete obj.hashed_password });
+			}
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
+};
+
+// Consulta de todos os usuários.
+const getAllUsers = async () => {
+	return await USER.getAllUsers()
 		.then(result => {
 			if (result.length > 0) {
 				result.forEach((obj) => { delete obj.hashed_password });
@@ -107,5 +121,6 @@ module.exports = {
 	createNewUser,
 	getUserByCpf,
 	getUsersByName,
-	getUsersByRole
+	getUsersByRole,
+	getAllUsers
 };
