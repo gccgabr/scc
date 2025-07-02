@@ -41,8 +41,3 @@ const isValid = (cpf) => {
 
 	return true;
 };
-
-console.log(isValid("00000000000"));
-console.log(isValid("11111111111"));
-console.log(isValid("22222222222"));
-console.log(isValid("04070350284"));
