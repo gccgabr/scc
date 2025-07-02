@@ -57,12 +57,67 @@ const getAllUsers = async () => {
 	return result;
 };
 
-// Update.
-const updateUser = async (cpf, newCpf, newName, newEmail, newPhone, newRole, newHashedPassword) => {
-	let query = `UPDATE User
-		SET cpf = ?, name = ?, email = ?, phone = ?, role = ?, hashed_password = ?
-		WHERE cpf = ?`;
-	let query_values = [newCpf, newName, newEmail, newPhone, newRole, newHashedPassword, cpf];
+/* Update. */
+// Atualizar nome de usuário.
+const updateUserName = async (cpf, name) => {
+	let query = "UPDATE User SET name = ? WHERE cpf = ?";
+	let query_values = [name, cpf];
+	let db = await getDB();
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		} else {
+			return true;
+		}
+	});
+};
+
+// Atualizar endereço de e-mail de usuário.
+const updateUserEmail = async (cpf, email) => {
+	let query = "UPDATE User SET email = ? WHERE cpf = ?";
+	let query_values = [email, cpf];
+	let db = await getDB();
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		} else {
+			return true;
+		}
+	});
+};
+
+// Atualizar número de telefone de usuário.
+const updateUserPhone = async (cpf, phone) => {
+	let query = "UPDATE User SET phone = ? WHERE cpf = ?";
+	let query_values = [phone, cpf];
+	let db = await getDB();
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		} else {
+			return true;
+		}
+	});
+};
+
+// Atualizar função de usuário.
+const updateUserRole = async (cpf, role) => {
+	let query = "UPDATE User SET role = ? WHERE cpf = ?";
+	let query_values = [role, cpf];
+	let db = await getDB();
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		} else {
+			return true;
+		}
+	});
+};
+
+// Atualizar senha de usuário.
+const updateUserHashedPassword = async (cpf, hashed_password) => {
+	let query = "UPDATE User SET role = ? WHERE cpf = ?";
+	let query_values = [hashedPassword, cpf];
 	let db = await getDB();
 	return await db.run(query, query_values, (err) => {
 		if (err) {
