@@ -8,7 +8,12 @@ const {
 	getAllUsers,
 	getUserByCpf,
 	getUsersByName,
-	getUsersByRole
+	getUsersByRole,
+	updateUserName,
+	updateUserEmail,
+	updateUserPhone,
+	updateUserRole,
+	updateUserHashedPassword
 } = require("../services/user.js");
 
 const express = require("express");
@@ -67,6 +72,30 @@ app.get("/api/user/role/:role", (req, res) => {
 		});
 });
 
+/* Update. */
+// Atualizar nome de usuário. */
+app.put("/api/user/:cpf/name/:name", (req, res) => {
+	console.log("PUT /api/user/:" + req.params.cpf + "/name/:" + req.params.name + " request.");
+});
+
+// Atualizar endereço de e-mail de usuário.
+app.put("/api/user/:cpf/email/:email", (req, res) => {
+	console.log("PUT /api/user/:" + req.params.cpf + "/email/:" + req.params.email + " request.");
+});
+
+// Atualizar número de telefone de usuário.
+app.put("/api/user/:cpf/phone/:phone", (req, res) => {
+	console.log("PUT /api/user/:" + req.params.cpf + "/phone/:" + req.params.phone + " request.");
+});
+
+// Atualizar função de usuário.
+app.put("/api/user/:cpf/role/:role", (req, res) => {
+	console.log("PUT /api/user/:" + req.params.cpf + "/role/:" + req.params.role + " request.");
+});
+
+app.put("/api/user/:cpf/password/:password", (req, res) => {
+	console.log("PUT /api/user/:" + req.params.cpf + "/password/:" + req.params.password + " request.");
+});
 
 /* Escuta do servidor. */
 app.listen(port, () => {
