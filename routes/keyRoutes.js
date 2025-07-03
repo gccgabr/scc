@@ -29,8 +29,7 @@ router.post("/new", (req, res) => {
 
 // Consulta de chave por código.
 router.get("/code/:code", (req, res) => {
-	if (!req.body) return res.sendStatus(400);
-	console.log("POST /code/" + req.params.code + " request.");
+	console.log("GET /code/" + req.params.code + " request.");
 
 	KEY_CONTROLLER.getKeyByCode(
 			req.params.code
@@ -46,8 +45,7 @@ router.get("/code/:code", (req, res) => {
 
 // Consulta de chave por código de seção.
 router.get("/section/:section-code", (req, res) => {
-	if (!req.body) return res.sendStatus(400);
-	console.log("POST /section/" + req.params.sectionCode + " request.");
+	console.log("GET /section/" + req.params.sectionCode + " request.");
 
 	KEY_CONTROLLER.getKeyBySectionCode(
 			req.params.sectionCode
@@ -62,8 +60,7 @@ router.get("/section/:section-code", (req, res) => {
 
 // Consulta de chave por nome da sala.
 router.get("/room/:room-name", (req, res) => {
-	if (!req.body) return res.sendStatus(400);
-	console.log("POST /room/" + req.params.roomName + " request.");
+	console.log("GET /room/" + req.params.roomName + " request.");
 
 	kEY_CONTROLLER.getKeyByRoomName(
 			req.params.roomName
@@ -78,16 +75,17 @@ router.get("/room/:room-name", (req, res) => {
 
 // Consulta de chave por status.
 router.get("/status/:status", (req, res) => {
-	if (!req.body) return res.sendStatus(400);
-	console.log("POST /status/" + req.params.keyStatus + " request.");
+	console.log("GET /status/" + req.params.keyStatus + " request.");
 
 	KEY_CONTROLLER.getKeyByStatus(
 			req.params.keyStatus
 		)
 		.then(result => {
+			console.log("HI");
 			res.send(result);
 		})
 		.catch(error => {
+			console.log("HI");
 			res.send(error);
 		});
 });
