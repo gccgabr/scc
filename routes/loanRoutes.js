@@ -9,7 +9,7 @@ app.use(express.json());
 // Criar nova seção.
 app.post("/api/section/new", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/section/new");
+	console.log("POST /api/key/new");
 
 	SECTION_CONTROLLER.createNewSection(
 			req.body.name,
@@ -24,25 +24,19 @@ app.post("/api/section/new", (req, res) => {
 });
 
 // Consultar seção por CPF de usuário.
-app.get("/api/section/user-cpf/:user-cpf", (req, res) => {
+app.post("/api/section/new", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("GET /api/section/user-cpf/" + req.params.userCpf + " request.");
+	console.log("POST /api/key/new");
 });
 
 // Consultar seção por nome.
-app.get("/api/section/name/:name", (req, res) => {
+app.post("/api/section/new", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("GET /api/section/name/:name" + req.params.name + " request.");
+	console.log("POST /api/key/new");
 });
 
 // Consultar seção por código.
-app.get("/api/section/code/:code", (req, res) => {
+app.post("/api/section/new", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("GET /api/section/code/:code" + req.params.code + " request.");
-});
-
-// Consultar todas as seções.
-app.get("/api/section/all", (req, res) => {
-	if (!req.body) return res.sendStatus(400);
-	console.log("GET /api/section/all request.");
+	console.log("POST /api/key/new");
 });
