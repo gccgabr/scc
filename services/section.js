@@ -52,6 +52,17 @@ const getSectionByCode = async (code) => {
 	});
 }
 
+const getAllSectionCodes = async () => {
+	let db = await getDB();
+	let query = "SELECT code FROM Section";
+	return await db.all(query, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return rows;
+	});
+};
+
 // Update.
 const updateSection = async (code, newName, newUserCpf) => {
 	let db = await getDB();
@@ -83,30 +94,7 @@ module.exports = {
 	getSectionByUserCPF,
 	getSectionByName,
 	getSectionByCode,
+	getAllSectionCodes,
 	updateSection,
 	deleteSection
 };
-
-//createNewSection("IEG", "00000000000")
-//	.then(result => {
-//		console.log(result);
-//	})
-//	.catch(error => {
-//		console.log(error);
-//	});
-
-//getSectionByCode(1)
-//	.then(result => {
-//		console.log(result);
-//	})
-//	.catch(error => {
-//		console.log(error);
-//	});
-//
-//deleteSection(1)
-//	.then(result => {
-//		console.log(result);
-//	})
-//	.catch(error => {
-//		console.log(error);
-//	});
