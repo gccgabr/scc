@@ -74,7 +74,7 @@ const updateSection = async (code, newName, newUserCpf) => {
 		}
 		return true;
 	});
-}
+};
 
 // Delete.
 const deleteSection = async (code) => {
@@ -87,7 +87,7 @@ const deleteSection = async (code) => {
 		}
 		return true;
 	});
-}
+};
 
 module.exports = {
 	createNewSection,
