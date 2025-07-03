@@ -16,16 +16,14 @@ const createNewKey = async (code, roomName, keyStatus, sectionCode) => {
 		throw "ERRO: Status inválido.";
 
 	// Validar código da seção.
-	throw await SECTION.getAllSectionCodes()
+	await SECTION.getAllSectionCodes()
 		.then(result => {
-			console.log("HI");
-			return result;
+			if (!sectionCode || !result.includes(sectionCode))
+				throw "ERRO: Seção inexistente.";
 		})
 		.catch(error => {
 			return error;
 		});
-	if (!sectionCode || !SECTION.getAllSectionCodes().includes(sectionCode))
-		throw "ERRO: Seção inexistente.";
 
 	return await KEY.createNewKey(code, roomName, keyStatus, sectionCode)
 		.then(result => {
