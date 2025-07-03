@@ -44,14 +44,14 @@ const getLoanByCode = async (code) => {
 		});
 };
 
-/* A consulta de empréstimos por código de seção deve possibilitar saber quais
- * empréstimos são pertencentes a uma seção específica. */
-const getLoanBySectionCode = async (sectionCode) => {
-}
-
-/* A consulta de empréstimos por CPF de usuário deve possibilitar saber quais
- * empréstimos pertencem a um usuário específico. */
-const getLoanByUserCpf = async (userCpf) => {
+const getAllLoans = async () => {
+	return LOAN.getAllLoans()
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 //// Update.
