@@ -20,6 +20,7 @@ router.post("/new", (req, res) => {
 			req.body.sectionCode
 		)
 		.then(result => {
+			console.log(result);
 			res.send(result);
 		})
 		.catch(error => {
@@ -75,17 +76,15 @@ router.get("/room/:room-name", (req, res) => {
 
 // Consulta de chave por status.
 router.get("/status/:status", (req, res) => {
-	console.log("GET /status/" + req.params.keyStatus + " request.");
+	console.log("GET /status/" + req.params.status + " request.");
 
 	KEY_CONTROLLER.getKeyByStatus(
-			req.params.keyStatus
+			req.params.status
 		)
 		.then(result => {
-			console.log("HI");
 			res.send(result);
 		})
 		.catch(error => {
-			console.log("HI");
 			res.send(error);
 		});
 });
