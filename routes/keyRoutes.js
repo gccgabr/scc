@@ -35,10 +35,10 @@ app.get("/api/key/code/:code", (req, res) => {
 			req.params.code
 		)
 		.then(result => {
-			return result;
+			res.send(result);
 		})
 		.catch(error => {
-			return error;
+			res.send(error);
 		});
 
 });
@@ -48,14 +48,14 @@ app.get("/api/key/section/:section-code", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/key/section/" + req.params.sectionCode + " request.");
 
-	return await KEY_CONTROLLER.getKeyBySectionCode(
+	KEY_CONTROLLER.getKeyBySectionCode(
 			req.params.sectionCode
 		)
 		.then(result => {
-			return result;
+			res.send(result);
 		})
 		.catch(error => {
-			return error;
+			res.send(error);
 		});
 });
 
@@ -64,14 +64,14 @@ app.get("/api/key/room/:room-name", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/key/room/" + req.params.roomName + " request.");
 
-	return await kEY_CONTROLLER.getKeyByRoomName(
+	kEY_CONTROLLER.getKeyByRoomName(
 			req.params.roomName
 		)
 		.then(result => {
-			return result;
+			res.send(result);
 		})
 		.catch(error => {
-			return error;
+			res.send(error);
 		});
 });
 
@@ -80,14 +80,14 @@ app.get("/api/key/status/:status", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/key/status/" + req.params.keyStatus + " request.");
 
-	return await KEY_CONTROLLER.getKeyByStatus(
+	KEY_CONTROLLER.getKeyByStatus(
 			req.params.keyStatus
 		)
 		.then(result => {
-			return result;
+			res.send(result);
 		})
 		.catch(error => {
-			return error;
+			res.send(error);
 		});
 });
 
@@ -96,15 +96,15 @@ app.put("/api/key/room", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/key/room request.");
 
-	return await KEY_CONTROLLER.updateKeyRoomName(
+	KEY_CONTROLLER.updateKeyRoomName(
 			req.body.code,
 			req.body.roomName
 		)
 		.then(result => {
-			return result;
+			res.send(result);
 		})
 		.catch(error => {
-			return error;
+			res.send(error);
 		});
 });
 
@@ -113,15 +113,15 @@ app.put("/api/key/status", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/key/status");
 
-	return await KEY_CONTROLLER.updateKeyStatus(
+	KEY_CONTROLLER.updateKeyStatus(
 			req.body.code,
 			req.body.keyStatus
 		)
 		.then(result => {
-			return result;
+			res.send(result);
 		})
 		.catch(error => {
-			return error;
+			res.send(error);
 		});
 });
 
@@ -130,15 +130,15 @@ app.put("/api/key/section", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/key/section request");
 
-	return await KEY_CONTROLLER.updateKeyRoomName(
+	KEY_CONTROLLER.updateKeyRoomName(
 			req.body.code,
 			req.body.sectionCode
 		)
 		.then(result => {
-			return result;
+			res.send(result);
 		})
 		.catch(error => {
-			return error;
+			res.send(error);
 		});
 });
 
@@ -147,13 +147,13 @@ app.delete("/api/key/del", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/key/section request");
 
-	return await KEY_CONTROLLER.deleteKey(
+	KEY_CONTROLLER.deleteKey(
 			req.body.code
 		)
 		.then(result => {
-			return result;
+			res.send(result);
 		})
 		.catch(error => {
-			return error;
+			res.send(error);
 		});
 });
