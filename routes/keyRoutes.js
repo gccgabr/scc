@@ -94,17 +94,50 @@ app.get("/api/key/status/:status", (req, res) => {
 // Atualizar nome da sala.
 app.put("/api/key/room", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/new");
+	console.log("POST /api/key/room request.");
+
+	return await KEY_CONTROLLER.updateKeyRoomName(
+			req.body.code,
+			req.body.roomName
+		)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 });
 
 // Atualizar status da chave.
 app.put("/api/key/status", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/new");
+	console.log("POST /api/key/status");
+
+	return await KEY_CONTROLLER.updateKeyStatus(
+			req.body.code,
+			req.body.keyStatus
+		)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 });
 
 // Atualizar nome da sala.
 app.put("/api/key/section", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/new");
+	console.log("POST /api/key/section request");
+
+	return await KEY_CONTROLLER.updateKeyRoomName(
+			req.body.code,
+			req.body.sectionCode
+		)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 });
