@@ -88,8 +88,7 @@ const deleteLoan = async (code) => {
 module.exports = {
 	createNewLoan,
 	getLoanByCode,
-	getLoanBySectionCode,
-	getLoanByUserCpf,
+	getAllLoans,
 	setLoanOverdue,
 	deleteLoan
 };
