@@ -3,10 +3,10 @@
 const DB = require("../database/db.js");
 
 // Create.
-const createNewSection = async (name, user_cpf) => {
+const createNewSection = async (name, userCpf) => {
 	let db = await DB.getDB();
 	let query = "INSERT INTO Section (name, user_cpf) VALUES (?, ?)";
-	let query_values = [name, user_cpf];
+	let query_values = [name, userCpf];
 	return await db.run(query, query_values, (err) => {
 		if (err) {
 			return err;
