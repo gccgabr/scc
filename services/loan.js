@@ -4,11 +4,11 @@ const DB = require("../database/db.js");
 const CPF = require("../controllers/userData/cpf.js");
 
 //// Create.
-const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
+const createNewLoan = async (keyCode, sectionCode, userCpf) => {
 	let db = await DB.getDB();
 	let start_timestamp = Date.now();
-	let query = "INSERT INTO Loan VALUES (?, ?, ?, ?, ?, ?, ?)";
-	let query_values = [code, start_timestamp, null, 0, keyCode, sectionCode, userCpf];
+	let query = "INSERT INTO Loan(key_code, section_code, user_cpf) VALUES (?, ?, ?, ?, ?, ?)";
+	let query_values = [start_timestamp, null, 0, keyCode, sectionCode, userCpf];
 	return await db.run(query, query_values, (err) => {
 		if (err) {
 			return err;
