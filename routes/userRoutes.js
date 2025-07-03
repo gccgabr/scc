@@ -176,6 +176,22 @@ app.put("/api/user/password", (req, res) => {
 		});
 });
 
+// Deletar usuário.
+app.delete("/api/user/del", (req, res) => {
+	console.log("PUT /api/user/del request.");
+	if (!req.body) return res.sendStatus(400);
+
+	USER_CONTROLLER.deleteUser(
+			req.body.cpf
+		)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
+});
+
 /* Escuta do servidor. */
 app.listen(port, () => {
 	console.log("Escutando na porta " + port + ".");
