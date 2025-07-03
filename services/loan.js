@@ -1,10 +1,10 @@
 "use strict";
 
-const { getDB, closeDB } = require("../database/db.js");
+const DB = require("../database/db.js");
 
-// Create.
+//// Create.
 const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let start_timestamp = Date.now();
 	let query = "INSERT INTO Loan VALUES (?, ?, ?, ?, ?, ?, ?)";
 	let query_values = [code, start_timestamp, null, 0, keyCode, sectionCode, userCpf];
@@ -16,9 +16,9 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 	});
 };
 
-// Read.
+//// Read.
 const getLoanByCode = async (code) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "SELECT * FROM Loan WHERE code = ?";
 	let query_values = [code];
 	return await db.all(query, query_values, (err, rows) => {
@@ -32,7 +32,7 @@ const getLoanByCode = async (code) => {
 /* A consulta de empréstimos por código de seção deve possibilitar saber quais
  * empréstimos são pertencentes a uma seção específica. */
 const getLoanBySectionCode = async (sectionCode) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "SELECT * FROM Loan WHERE section_code = ?";
 	let query_values = [sectionCode];
 	return await db.all(query, query_values, (err, rows) => {
@@ -46,7 +46,7 @@ const getLoanBySectionCode = async (sectionCode) => {
 /* A consulta de empréstimos por CPF de usuário deve possibilitar saber quais
  * empréstimos pertencem a um usuário específico. */
 const getLoanByUserCpf = async (userCpf) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "SELECT * FROM Loan WHERE user_cpf = ?";
 	let query_values = [userCpf];
 	return await db.all(query, query_values, (err, rows) => {
@@ -60,7 +60,7 @@ const getLoanByUserCpf = async (userCpf) => {
 //// Update.
 /* A atualização dos dados de empréstimo deve possibilitar, precipuamente, a finalização do empréstimo. */
 const setLoanOverdue = async (code) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "UPDATE Loan SET overdue = 1 WHERE code = ?";
 	let query_values = [code];
 	return await db.run(query, query_values, (err) => {
@@ -71,9 +71,9 @@ const setLoanOverdue = async (code) => {
 	});
 }
 
-// Delete.
+//// Delete.
 const deleteLoan = async (code) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "DELETE FROM Loan WHERE code = ?";
 	let query_values = [code];
 	return await db.run(query, query_values, (err) => {
