@@ -25,19 +25,55 @@ app.post("/api/loan/new", (req, res) => {
 });
 
 // Consultar seção por CPF de usuário.
-app.post("/api/section/new", (req, res) => {
-	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/new");
+app.get("/api/loan/user-cpf/:user-cpf", (req, res) => {
+	console.log("GET /api/loan/user-cpf/" + req.params.userCpf + " request.");
+	LOAN_CONTROLLER.getLoanByUserCpf(
+			req.params.userCpf
+		)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
 });
 
 // Consultar seção por nome.
-app.post("/api/section/new", (req, res) => {
-	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/new");
+app.get("/api/loan/name/:name", (req, res) => {
+	console.log("GET /api/loan/name/" + req.params.name + " request.");
+	LOAN_CONTROLLER.getLoanByName(
+			req.params.name
+		)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
 });
 
 // Consultar seção por código.
-app.post("/api/section/new", (req, res) => {
-	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/new");
+app.get("/api/loan/code/:code", (req, res) => {
+	console.log("GET /api/loan/code/" + req.params.code + " request.");
+	LOAN_CONTROLLER.getLoanByCode(
+			req.params.code
+		)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
+});
+
+// Consultar todos os empréstimos.
+app.get("/api/loan/all", (req, res) => {
+	console.log("GET /api/loan/all request.");
+	LOAN_CONTROLLER.getAllLoans()
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
 });
