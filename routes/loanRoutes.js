@@ -1,18 +1,19 @@
 "use strict";
 
 const express = require("express");
-const SECTION_CONTROLLER = require("../controllers/sectionController.js");
+const LOAN_CONTROLLER = require("../controllers/loanController.js");
 
 /* Middleware configuration. */
 app.use(express.json());
 
 // Criar nova seção.
-app.post("/api/section/new", (req, res) => {
+app.post("/api/loan/new", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/new");
+	console.log("POST /api/loan/new");
 
-	SECTION_CONTROLLER.createNewSection(
-			req.body.name,
+	LOAN_CONTROLLER.createNewLoan(
+			req.body.keyCode,
+			req.body.sectionCode,
 			req.body.userCpf
 		)
 		.then(result => {
