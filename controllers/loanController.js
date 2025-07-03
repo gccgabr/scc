@@ -31,6 +31,17 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 
 //// Read.
 const getLoanByCode = async (code) => {
+	// Validar código de empréstimo.
+	if (code == null || Number(code) < 0)
+		return "ERRO: Código inválido.";
+
+	return await LOAN.getLoanByCode(code)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 /* A consulta de empréstimos por código de seção deve possibilitar saber quais
