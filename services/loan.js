@@ -1,6 +1,7 @@
 "use strict";
 
 const DB = require("../database/db.js");
+const CPF = require("../controllers/userData/cpf.js");
 
 //// Create.
 const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
@@ -22,6 +23,17 @@ const getLoanByCode = async (code) => {
 	let query = "SELECT * FROM Loan WHERE code = ?";
 	let query_values = [code];
 	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return rows;
+	});
+};
+
+const getAllLoans = async () => {
+	let db = await DB.getDB();
+	let query = "SELECT * FROM Loan;";
+	return await db.all(query, (err, rows) => {
 		if (err) {
 			return err;
 		}
