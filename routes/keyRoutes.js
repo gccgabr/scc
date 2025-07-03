@@ -42,3 +42,33 @@ app.get("/api/key/code/:code", (req, res) => {
 		});
 
 });
+
+// Consulta de chave por código de seção.
+app.get("/api/key/section/:section-code", (req, res) => {
+	if (!req.body) return res.sendStatus(400);
+	console.log("POST /api/key/new");
+
+	return await KEY_CONTROLLER.getKeyBySectionCode(
+			req.body.sectionCode
+		)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
+});
+
+// Consulta de chave por nome da sala.
+app.get("/api/key/room/:room-name", (req, res) => {
+	if (!req.body) return res.sendStatus(400);
+	console.log("POST /api/key/new");
+
+});
+
+// Consulta de chave por status.
+app.get("/api/key/status/:status", (req, res) => {
+	if (!req.body) return res.sendStatus(400);
+	console.log("POST /api/key/new");
+
+});
