@@ -9,9 +9,9 @@ router.use(express.json());
 
 /* Rotas. */
 // Criação de nova chave.
-router.post("/api/key/new", (req, res) => {
+router.post("/new", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/new");
+	console.log("POST /new");
 	
 	KEY_CONTROLLER.createNewKey(
 			req.body.code,
@@ -28,9 +28,9 @@ router.post("/api/key/new", (req, res) => {
 });
 
 // Consulta de chave por código.
-router.get("/api/key/code/:code", (req, res) => {
+router.get("/code/:code", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/code/" + req.params.code + " request.");
+	console.log("POST /code/" + req.params.code + " request.");
 
 	KEY_CONTROLLER.getKeyByCode(
 			req.params.code
@@ -45,9 +45,9 @@ router.get("/api/key/code/:code", (req, res) => {
 });
 
 // Consulta de chave por código de seção.
-router.get("/api/key/section/:section-code", (req, res) => {
+router.get("/section/:section-code", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/section/" + req.params.sectionCode + " request.");
+	console.log("POST /section/" + req.params.sectionCode + " request.");
 
 	KEY_CONTROLLER.getKeyBySectionCode(
 			req.params.sectionCode
@@ -61,9 +61,9 @@ router.get("/api/key/section/:section-code", (req, res) => {
 });
 
 // Consulta de chave por nome da sala.
-router.get("/api/key/room/:room-name", (req, res) => {
+router.get("/room/:room-name", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/room/" + req.params.roomName + " request.");
+	console.log("POST /room/" + req.params.roomName + " request.");
 
 	kEY_CONTROLLER.getKeyByRoomName(
 			req.params.roomName
@@ -77,9 +77,9 @@ router.get("/api/key/room/:room-name", (req, res) => {
 });
 
 // Consulta de chave por status.
-router.get("/api/key/status/:status", (req, res) => {
+router.get("/status/:status", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/status/" + req.params.keyStatus + " request.");
+	console.log("POST /status/" + req.params.keyStatus + " request.");
 
 	KEY_CONTROLLER.getKeyByStatus(
 			req.params.keyStatus
@@ -93,9 +93,9 @@ router.get("/api/key/status/:status", (req, res) => {
 });
 
 // Atualizar nome da sala.
-router.put("/api/key/room", (req, res) => {
+router.put("/room", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/room request.");
+	console.log("POST /room request.");
 
 	KEY_CONTROLLER.updateKeyRoomName(
 			req.body.code,
@@ -110,9 +110,9 @@ router.put("/api/key/room", (req, res) => {
 });
 
 // Atualizar status da chave.
-router.put("/api/key/status", (req, res) => {
+router.put("/status", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/status");
+	console.log("POST /status");
 
 	KEY_CONTROLLER.updateKeyStatus(
 			req.body.code,
@@ -127,9 +127,9 @@ router.put("/api/key/status", (req, res) => {
 });
 
 // Atualizar nome da sala.
-router.put("/api/key/section", (req, res) => {
+router.put("/section", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/section request");
+	console.log("POST /section request");
 
 	KEY_CONTROLLER.updateKeyRoomName(
 			req.body.code,
@@ -144,9 +144,9 @@ router.put("/api/key/section", (req, res) => {
 });
 
 // Deletar chave.
-router.delete("/api/key/del", (req, res) => {
+router.delete("/del", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /api/key/section request");
+	console.log("POST /section request");
 
 	KEY_CONTROLLER.deleteKey(
 			req.body.code

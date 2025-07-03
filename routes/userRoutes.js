@@ -14,7 +14,7 @@ router.use(express.json());
 
 /* Rotas. (CRUD) */
 // Criar novo usuário.
-router.post("/api/user/new/", (req, res) => {
+router.post("/new", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/user/new");
 	USER_CONTROLLER.createNewUser(
@@ -33,20 +33,8 @@ router.post("/api/user/new/", (req, res) => {
 	});
 });
 
-// Obter um vetor de todos os usuários.
-router.get("/api/user", (req, res) => {
-	console.log("GET /api/user request.");
-	USER_CONTROLLER.getAllUsers()
-		.then(result => {
-			res.send(result);
-		})
-		.catch(error => {
-			res.send(error);
-		});
-});
-
 // Consultar um usuário por meio do CPF.
-router.get("/api/user/cpf/:cpf", (req, res) => {
+router.get("/cpf/:cpf", (req, res) => {
 	console.log("GET /api/user/cpf/:" + req.params.cpf + " request.");
 	USER_CONTROLLER.getUserByCpf(req.params.cpf)
 		.then(result => {
@@ -58,7 +46,7 @@ router.get("/api/user/cpf/:cpf", (req, res) => {
 });
 
 // Consultar usuários por meio de nome.
-router.get("/api/user/name/:name", (req, res) => {
+router.get("/name/:name", (req, res) => {
 	console.log("GET /api/user/name/:" + req.params.name + " request.");
 	USER_CONTROLLER.getUsersByName(req.params.name)
 		.then(result => {
@@ -70,7 +58,7 @@ router.get("/api/user/name/:name", (req, res) => {
 });
 
 // Consultar usuários por meio de função.
-router.get("/api/user/role/:role", (req, res) => {
+router.get("/role/:role", (req, res) => {
 	console.log("GET /api/user/role/:" + req.params.role + " request.");
 	USER_CONTROLLER.getUsersByRole(req.params.role)
 		.then(result => {
@@ -82,7 +70,7 @@ router.get("/api/user/role/:role", (req, res) => {
 });
 
 // Consultar todos os usuários.
-router.get("/api/user/all", (req, res) => {
+router.get("/all", (req, res) => {
 	console.log("GET /api/user/all request.");
 	USER_CONTROLLER.getAllUsers()
 		.then(result => {
@@ -95,7 +83,7 @@ router.get("/api/user/all", (req, res) => {
 
 /* Update. */
 // Atualizar nome de usuário. */
-router.put("/api/user/name", (req, res) => {
+router.put("/name", (req, res) => {
 	console.log("PUT /api/user/name request.");
 	if (!req.body) return res.sendStatus(400);
 	USER_CONTROLLER.updateUserName(
@@ -111,7 +99,7 @@ router.put("/api/user/name", (req, res) => {
 });
 
 // Atualizar endereço de e-mail de usuário.
-router.put("/api/user/email", (req, res) => {
+router.put("/email", (req, res) => {
 	console.log("PUT /api/user/email request.");
 	if (!req.body) return res.sendStatus(400);
 	USER_CONTROLLER.updateUserEmail(
@@ -127,7 +115,7 @@ router.put("/api/user/email", (req, res) => {
 });
 
 // Atualizar número de telefone de usuário.
-router.put("/api/user/phone", (req, res) => {
+router.put("/phone", (req, res) => {
 	console.log("PUT /api/user/phone request.");
 	if (!req.body) return res.sendStatus(400);
 	USER_CONTROLLER.updateUserPhone(
@@ -143,7 +131,7 @@ router.put("/api/user/phone", (req, res) => {
 });
 
 // Atualizar função de usuário.
-router.put("/api/user/role", (req, res) => {
+router.put("/role", (req, res) => {
 	console.log("PUT /api/user/role request.");
 	if (!req.body) return res.sendStatus(400);
 	USER_CONTROLLER.updateUserRole(
@@ -158,7 +146,7 @@ router.put("/api/user/role", (req, res) => {
 		});
 });
 
-router.put("/api/user/password", (req, res) => {
+router.put("/password", (req, res) => {
 	console.log("PUT /api/user/password request.");
 	if (!req.body) return res.sendStatus(400);
 	USER_CONTROLLER.updateUserPassword(
@@ -174,7 +162,7 @@ router.put("/api/user/password", (req, res) => {
 });
 
 // Deletar usuário.
-router.delete("/api/user/del", (req, res) => {
+router.delete("/del", (req, res) => {
 	console.log("PUT /api/user/del request.");
 	if (!req.body) return res.sendStatus(400);
 
