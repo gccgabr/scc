@@ -23,20 +23,93 @@ const createNewSection = async (name, userCpf) => {
 };
 
 // Read.
-const getSectionByUserCpf = async (user_cpf) => {
+const getSectionByUserCpf = async (userCpf) => {
+	// Validar CPF de usuário.
+	if (!CPF.isValid(userCpf))
+		return "ERRO: CPF inválido.";
+
+	return await SECTION.getSectionByUserCpf(userCpf)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 const getSectionByName = async (name) => {
+	// Validar nome da seção.
+	if (!name)
+		return "ERRO: Nome de seção inválido.";
+
+	return await SECTION.getSectionByName(name)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 const getSectionByCode = async (code) => {
+	// Validar código da seção.
+	if (!Number.isInteger(code))
+		return "ERRO: Código inválido.";
+
+	return await SECTION.getSectionByCode(code)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 }
 
 const getAllSectionCodes = async () => {
+	return await SECTION.getAllSectionCodes()
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 // Update.
-const updateSection = async (code, newName, newUserCpf) => {
+const updateSectionName = async (code, name) => {
+	// Validar código da seção.
+	if (!Number.isInteger(code))
+		return "ERRO: Código inválido.";
+
+	// Validar nome da seção.
+	if (!name)
+		return "ERRO: Nome de seção inválido.";
+
+	return await SECTION.updateSectionName(code, name)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
+};
+
+const updateSectionUserCpf = async (code, userCpf) => {
+	// Validar código da seção.
+	if (!Number.isInteger(code))
+		return "ERRO: Código inválido.";
+
+	// Validar CPF de usuário.
+	if (!CPF.isValid(userCpf))
+		return "ERRO: CPF inválido.";
+
+	return await SECTION.updateSectionUserCpf(code, userCpf)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 // Delete.
