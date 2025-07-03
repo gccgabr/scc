@@ -25,3 +25,20 @@ app.post("/api/key/new", (req, res) => {
 			res.send(error);
 		});
 });
+
+// Consulta de chave por código.
+app.get("/api/key/code/:code", (req, res) => {
+	if (!req.body) return res.sendStatus(400);
+	console.log("POST /api/key/new");
+
+	KEY_CONTROLLER.getKeyByCode(
+			req.body.code
+		)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
+
+});
