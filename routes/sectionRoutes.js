@@ -1,13 +1,14 @@
 "use strict";
 
 const express = require("express");
+const router = express.Router();
 const SECTION_CONTROLLER = require("../controllers/sectionController.js");
 
 /* Middleware configuration. */
-app.use(express.json());
+router.use(express.json());
 
 // Criar nova seção.
-app.post("/api/section/new", (req, res) => {
+router.post("/api/section/new", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("PUT /api/section/new request.");
 
@@ -24,7 +25,7 @@ app.post("/api/section/new", (req, res) => {
 });
 
 // Consultar seção por CPF de usuário.
-app.get("/api/section/user-cpf/:user-cpf", (req, res) => {
+router.get("/api/section/user-cpf/:user-cpf", (req, res) => {
 	console.log("GET /api/section/user-cpf/" + req.params.userCpf + " request.");
 	
 	SECTION_CONTROLLER.getSectionByUserCpf(
@@ -39,7 +40,7 @@ app.get("/api/section/user-cpf/:user-cpf", (req, res) => {
 });
 
 // Consultar seção por nome.
-app.get("/api/section/name/:name", (req, res) => {
+router.get("/api/section/name/:name", (req, res) => {
 	console.log("GET /api/section/name/" + req.params.name + " request.");
 
 	SECTION_CONTROLLER.getSectionByName(
@@ -54,7 +55,7 @@ app.get("/api/section/name/:name", (req, res) => {
 });
 
 // Consultar seção por código.
-app.get("/api/section/code/:code", (req, res) => {
+router.get("/api/section/code/:code", (req, res) => {
 	console.log("GET /api/section/code/" + req.params.code + " request.");
 	SECTION_CONTROLLER.getSectionByCode(
 			req.params.code
@@ -68,7 +69,7 @@ app.get("/api/section/code/:code", (req, res) => {
 });
 
 // Consultar todos os códigos das seções.
-app.get("/api/section/all", (req, res) => {
+router.get("/api/section/all", (req, res) => {
 	console.log("GET /api/section/all request.");
 	SECTION_CONTROLLER.getAllSectionCodes()
 		.then(result => {
@@ -80,7 +81,7 @@ app.get("/api/section/all", (req, res) => {
 });
 
 // Atualizar nome de seção.
-app.put("/api/section/name", (req, res) => {
+router.put("/api/section/name", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("PUT /api/section/name request.");
 
@@ -96,7 +97,7 @@ app.put("/api/section/name", (req, res) => {
 		});
 });
 // Atualizar CPF de usuário.
-app.put("/api/section/user-cpf", (req, res) => {
+router.put("/api/section/user-cpf", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("PUT /api/section/name request.");
 
@@ -113,7 +114,7 @@ app.put("/api/section/user-cpf", (req, res) => {
 });
 
 // Deletar seção.
-app.delete("/api/section/del", (req, res) => {
+router.delete("/api/section/del", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("DELETE /api/section request.");
 
@@ -127,3 +128,5 @@ app.delete("/api/section/del", (req, res) => {
 			res.send(error);
 		});
 });
+
+module.exports = router;

@@ -5,19 +5,16 @@
  * aos dados no banco de dados, e tratar alguns aspectos de segurança. */
 
 const { createNewUser } = require("../services/user.js");
-
 const USER_CONTROLLER = require("../controllers/userController.js");
-
 const express = require("express");
-const app = express();
-const port = 3000;
+const router = express.Router();
 
 /* Middleware. */
-app.use(express.json());
+router.use(express.json());
 
 /* Rotas. (CRUD) */
 // Criar novo usuário.
-app.post("/api/user/new/", (req, res) => {
+router.post("/api/user/new/", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/user/new");
 	USER_CONTROLLER.createNewUser(
@@ -37,7 +34,7 @@ app.post("/api/user/new/", (req, res) => {
 });
 
 // Obter um vetor de todos os usuários.
-app.get("/api/user", (req, res) => {
+router.get("/api/user", (req, res) => {
 	console.log("GET /api/user request.");
 	USER_CONTROLLER.getAllUsers()
 		.then(result => {
@@ -49,7 +46,7 @@ app.get("/api/user", (req, res) => {
 });
 
 // Consultar um usuário por meio do CPF.
-app.get("/api/user/cpf/:cpf", (req, res) => {
+router.get("/api/user/cpf/:cpf", (req, res) => {
 	console.log("GET /api/user/cpf/:" + req.params.cpf + " request.");
 	USER_CONTROLLER.getUserByCpf(req.params.cpf)
 		.then(result => {
@@ -61,7 +58,7 @@ app.get("/api/user/cpf/:cpf", (req, res) => {
 });
 
 // Consultar usuários por meio de nome.
-app.get("/api/user/name/:name", (req, res) => {
+router.get("/api/user/name/:name", (req, res) => {
 	console.log("GET /api/user/name/:" + req.params.name + " request.");
 	USER_CONTROLLER.getUsersByName(req.params.name)
 		.then(result => {
@@ -73,7 +70,7 @@ app.get("/api/user/name/:name", (req, res) => {
 });
 
 // Consultar usuários por meio de função.
-app.get("/api/user/role/:role", (req, res) => {
+router.get("/api/user/role/:role", (req, res) => {
 	console.log("GET /api/user/role/:" + req.params.role + " request.");
 	USER_CONTROLLER.getUsersByRole(req.params.role)
 		.then(result => {
@@ -85,7 +82,7 @@ app.get("/api/user/role/:role", (req, res) => {
 });
 
 // Consultar todos os usuários.
-app.get("/api/user/all", (req, res) => {
+router.get("/api/user/all", (req, res) => {
 	console.log("GET /api/user/all request.");
 	USER_CONTROLLER.getAllUsers()
 		.then(result => {
@@ -98,7 +95,7 @@ app.get("/api/user/all", (req, res) => {
 
 /* Update. */
 // Atualizar nome de usuário. */
-app.put("/api/user/name", (req, res) => {
+router.put("/api/user/name", (req, res) => {
 	console.log("PUT /api/user/name request.");
 	if (!req.body) return res.sendStatus(400);
 	USER_CONTROLLER.updateUserName(
@@ -114,7 +111,7 @@ app.put("/api/user/name", (req, res) => {
 });
 
 // Atualizar endereço de e-mail de usuário.
-app.put("/api/user/email", (req, res) => {
+router.put("/api/user/email", (req, res) => {
 	console.log("PUT /api/user/email request.");
 	if (!req.body) return res.sendStatus(400);
 	USER_CONTROLLER.updateUserEmail(
@@ -130,7 +127,7 @@ app.put("/api/user/email", (req, res) => {
 });
 
 // Atualizar número de telefone de usuário.
-app.put("/api/user/phone", (req, res) => {
+router.put("/api/user/phone", (req, res) => {
 	console.log("PUT /api/user/phone request.");
 	if (!req.body) return res.sendStatus(400);
 	USER_CONTROLLER.updateUserPhone(
@@ -146,7 +143,7 @@ app.put("/api/user/phone", (req, res) => {
 });
 
 // Atualizar função de usuário.
-app.put("/api/user/role", (req, res) => {
+router.put("/api/user/role", (req, res) => {
 	console.log("PUT /api/user/role request.");
 	if (!req.body) return res.sendStatus(400);
 	USER_CONTROLLER.updateUserRole(
@@ -161,7 +158,7 @@ app.put("/api/user/role", (req, res) => {
 		});
 });
 
-app.put("/api/user/password", (req, res) => {
+router.put("/api/user/password", (req, res) => {
 	console.log("PUT /api/user/password request.");
 	if (!req.body) return res.sendStatus(400);
 	USER_CONTROLLER.updateUserPassword(
@@ -177,7 +174,7 @@ app.put("/api/user/password", (req, res) => {
 });
 
 // Deletar usuário.
-app.delete("/api/user/del", (req, res) => {
+router.delete("/api/user/del", (req, res) => {
 	console.log("PUT /api/user/del request.");
 	if (!req.body) return res.sendStatus(400);
 
@@ -192,7 +189,4 @@ app.delete("/api/user/del", (req, res) => {
 		});
 });
 
-/* Escuta do servidor. */
-app.listen(port, () => {
-	console.log("Escutando na porta " + port + ".");
-});
+module.exports = router;
