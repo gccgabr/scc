@@ -135,18 +135,62 @@ const updateUserName = async (cpf, name) => {
 
 // Atualizar endereço de e-mail de usuário.
 const updateUserEmail = async (cpf, email) => {
+	// Validar novo endereço de e-mail.
+	if (!DATA.email.isValid(email))
+		return "ERRO: Endereço de e-mail inválido.";
+	
+	return await USER.updateUserEmail(cpf, email)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 // Atualizar número de telefone de usuário.
 const updateUserPhone = async (cpf, phone) => {
+	// Validar novo número de telefone.
+	if (!DATA.phone.isValid(phone))
+		return "ERRO: Número de telefone inválido.";
+
+	return await USER.updateUserPhone(cpf, phone)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 // Atualizar função de usuário.
 const updateUserRole = async (cpf, role) => {
+	// Validar código de função.
+	if (role < 0 || role > 2)
+		return "ERRO: Código de função inválido.";	
+
+	return await USER.updateUserRole(cpf, role)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 // Atualizar senha de usuário.
-const updateUserHashedPassword = async (cpf, hashed_password) => {
+const updateUserPassword = async (cpf, password) => {
+	// Validar senha.
+	if (!password || !password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/))
+		return "ERRO: Senha inválida.";
+
+	return await USER.updateUserHashedPassword(cpf, password)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 module.exports = {
@@ -159,5 +203,5 @@ module.exports = {
 	updateUserEmail,
 	updateUserPhone,
 	updateUserRole,
-	updateUserHashedPassword
+	updateUserPassword
 };
