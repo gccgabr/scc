@@ -80,4 +80,13 @@ app.get("/api/key/status/:status", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/key/new");
 
+	return await KEY_CONTROLLER.getKeyByStatus(
+			req.body.keyStatus
+		)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 });
