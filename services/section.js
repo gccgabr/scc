@@ -1,10 +1,10 @@
 "use strict";
 
-const { getDB, closeDB } = require("../database/db.js");
+const DB = require("../database/db.js");
 
 // Create.
 const createNewSection = async (name, user_cpf) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "INSERT INTO Section (name, user_cpf) VALUES (?, ?)";
 	let query_values = [name, user_cpf];
 	return await db.run(query, query_values, (err) => {
@@ -17,7 +17,7 @@ const createNewSection = async (name, user_cpf) => {
 
 // Read.
 const getSectionByUserCpf = async (user_cpf) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "SELECT * FROM Section WHERE user_cpf = ?";
 	let query_values = [user_cpf];
 	return await db.all(query, query_values, (err, rows) => {
@@ -29,7 +29,7 @@ const getSectionByUserCpf = async (user_cpf) => {
 };
 
 const getSectionByName = async (name) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "SELECT * FROM Section WHERE name = ?";
 	let query_values = [name];
 	return await db.all(query, query_values, (err, rows) => {
@@ -41,7 +41,7 @@ const getSectionByName = async (name) => {
 };
 
 const getSectionByCode = async (code) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "SELECT * FROM Section WHERE code = ?";
 	let query_values = [code];
 	return await db.all(query, query_values, (err, rows) => {
@@ -53,7 +53,7 @@ const getSectionByCode = async (code) => {
 }
 
 const getAllSectionCodes = async () => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "SELECT code FROM Section";
 	return await db.all(query, (err, rows) => {
 		if (err) {
@@ -65,7 +65,7 @@ const getAllSectionCodes = async () => {
 
 // Update.
 const updateSection = async (code, newName, newUserCpf) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "UPDATE Section SET name = ?, user_cpf = ? WHERE code = ?";
 	let query_values = [newName, newUserCpf, code];
 	return await db.run(query, query_values, (err) => {
@@ -78,7 +78,7 @@ const updateSection = async (code, newName, newUserCpf) => {
 
 // Delete.
 const deleteSection = async (code) => {
-	let db = await getDB();
+	let db = await DB.getDB();
 	let query = "DELETE FROM Section WHERE code = ?";
 	let query_values = [code];
 	return await db.run(query, query_values, (err) => {
