@@ -75,8 +75,19 @@ app.get("/api/user/name/:name", (req, res) => {
 // Consultar usuários por meio de função.
 app.get("/api/user/role/:role", (req, res) => {
 	console.log("GET /api/user/role/:" + req.params.role + " request.");
-	console.log(USER_CONTROLLER);
 	USER_CONTROLLER.getUsersByRole(req.params.role)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
+});
+
+// Consultar todos os usuários.
+app.get("/api/user/all", (req, res) => {
+	console.log("GET /api/user/all request.");
+	USER_CONTROLLER.getAllUsers()
 		.then(result => {
 			res.send(result);
 		})
@@ -87,8 +98,19 @@ app.get("/api/user/role/:role", (req, res) => {
 
 /* Update. */
 // Atualizar nome de usuário. */
-app.put("/api/user/:cpf/name/:name", (req, res) => {
-	console.log("PUT /api/user/:" + req.params.cpf + "/name/:" + req.params.name + " request.");
+app.put("/api/user/name", (req, res) => {
+	console.log("PUT /api/user/name request.");
+	if (!req.body) return res.sendStatus(400);
+	USER_CONTROLLER.updateUserName(
+			req.body.cpf,
+			req.body.name
+		)
+		.then(result => {
+			res.send("Nome de usuário atualizado com sucesso.");
+		})
+		.catch(error => {
+			res.send(error);
+		});
 });
 
 // Atualizar endereço de e-mail de usuário.
