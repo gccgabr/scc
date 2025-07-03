@@ -154,5 +154,10 @@ module.exports = {
 	getUserByCpf,
 	getUsersByName,
 	getUsersByRole,
-	getAllUsers
+	getAllUsers,
+	updateUserName,
+	updateUserEmail,
+	updateUserPhone,
+	updateUserRole,
+	updateUserHashedPassword
 };
