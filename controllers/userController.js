@@ -20,27 +20,27 @@ const DATA = {
 const createNewUser = async (cpf, name, email, phone, role, password) => {
 	// Validar CPF.
 	if (!DATA.cpf.isValid(cpf))
-		return "ERRO: CPF inválido.";
+		throw "ERRO: CPF inválido.";
 
 	// Validar nome.
 	if (!name)
-		return "ERRO: Nome vazio.";
+		throw "ERRO: Nome vazio.";
 
 	// Validar endereço de e-mail.
 	if (!DATA.email.isValid(email))
-		return "ERRO: Endereço de e-mail inválido.";
+		throw "ERRO: Endereço de e-mail inválido.";
 
 	// Validar número de telefone.
 	if (!DATA.phone.isValid(phone))
-		return "ERRO: Número de telefone inválido.";
+		throw "ERRO: Número de telefone inválido.";
 
 	// Validar código de função.
 	if (role < 0 || role > 2)
-		return "ERRO: Código de função inválido.";	
+		throw "ERRO: Código de função inválido.";	
 
 	// Validar senha.
 	if (!password || !password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/))
-		return "ERRO: Senha inválida.";
+		throw "ERRO: Senha inválida.";
 
 	// Codificar senha e gravar dados no banco de dados.
 	let saltRounds = 10;
@@ -122,7 +122,7 @@ const getAllUsers = async () => {
 // Atualizar nome de usuário.
 const updateUserName = async (cpf, name) => {
 	// Validar novo nome.
-	if (!name) return "ERRO: Nome vazio.";
+	if (!name) throw "ERRO: Nome vazio.";
 	
 	return await USER.updateUserName(cpf, name)
 		.then(result => {
@@ -137,7 +137,7 @@ const updateUserName = async (cpf, name) => {
 const updateUserEmail = async (cpf, email) => {
 	// Validar novo endereço de e-mail.
 	if (!DATA.email.isValid(email))
-		return "ERRO: Endereço de e-mail inválido.";
+		throw "ERRO: Endereço de e-mail inválido.";
 	
 	return await USER.updateUserEmail(cpf, email)
 		.then(result => {
@@ -152,7 +152,7 @@ const updateUserEmail = async (cpf, email) => {
 const updateUserPhone = async (cpf, phone) => {
 	// Validar novo número de telefone.
 	if (!DATA.phone.isValid(phone))
-		return "ERRO: Número de telefone inválido.";
+		throw "ERRO: Número de telefone inválido.";
 
 	return await USER.updateUserPhone(cpf, phone)
 		.then(result => {
@@ -167,7 +167,7 @@ const updateUserPhone = async (cpf, phone) => {
 const updateUserRole = async (cpf, role) => {
 	// Validar código de função.
 	if (role < 0 || role > 2)
-		return "ERRO: Código de função inválido.";	
+		throw "ERRO: Código de função inválido.";	
 
 	return await USER.updateUserRole(cpf, role)
 		.then(result => {
@@ -182,7 +182,7 @@ const updateUserRole = async (cpf, role) => {
 const updateUserPassword = async (cpf, password) => {
 	// Validar senha.
 	if (!password || !password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/))
-		return "ERRO: Senha inválida.";
+		throw "ERRO: Senha inválida.";
 
 	return await USER.updateUserHashedPassword(cpf, password)
 		.then(result => {
