@@ -111,3 +111,19 @@ app.put("/api/section/user-cpf", (req, res) => {
 			res.send(error);
 		});
 });
+
+// Deletar seção.
+app.delete("/api/section/del", (req, res) => {
+	if (!req.body) return res.sendStatus(400);
+	console.log("DELETE /api/section request.");
+
+	SECTION_CONTROLLER.deleteSection(
+			req.body.code
+		)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
+});
