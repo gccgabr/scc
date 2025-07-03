@@ -107,6 +107,7 @@ module.exports = {
 	getSectionByName,
 	getSectionByCode,
 	getAllSectionCodes,
-	updateSection,
+	updateSectionName,
+	updateSectionUserCpf,
 	deleteSection
 };
