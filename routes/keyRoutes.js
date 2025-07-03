@@ -64,6 +64,15 @@ app.get("/api/key/room/:room-name", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /api/key/new");
 
+	return await kEY_CONTROLLER.getKeyByRoomName(
+			req.body.roomName
+		)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 });
 
 // Consulta de chave por status.
