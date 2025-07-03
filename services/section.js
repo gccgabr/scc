@@ -76,7 +76,7 @@ const updateSectionName = async (code, name) => {
 	});
 };
 
-const updateSectionUserCPF = async (code, userCpf) => {
+const updateSectionUserCpf = async (code, userCpf) => {
 	let db = await DB.getDB();
 	let query = "UPDATE Section SET user_cpf WHERE code = ?";
 	let query_values = [userCpf, code];
