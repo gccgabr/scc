@@ -103,7 +103,7 @@ const deleteSection = async (code) => {
 
 module.exports = {
 	createNewSection,
-	getSectionByUserCPF,
+	getSectionByUserCpf,
 	getSectionByName,
 	getSectionByCode,
 	getAllSectionCodes,
