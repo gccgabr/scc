@@ -64,10 +64,22 @@ const getAllSectionCodes = async () => {
 };
 
 // Update.
-const updateSection = async (code, newName, newUserCpf) => {
+const updateSectionName = async (code, name) => {
 	let db = await DB.getDB();
-	let query = "UPDATE Section SET name = ?, user_cpf = ? WHERE code = ?";
-	let query_values = [newName, newUserCpf, code];
+	let query = "UPDATE Section SET name = ? WHERE code = ?";
+	let query_values = [name, code];
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+};
+
+const updateSectionUserCPF = async (code, userCpf) => {
+	let db = await DB.getDB();
+	let query = "UPDATE Section SET user_cpf WHERE code = ?";
+	let query_values = [userCpf, code];
 	return await db.run(query, query_values, (err) => {
 		if (err) {
 			return err;
