@@ -10,10 +10,11 @@ const sectionRoutes = require("./routes/sectionRoutes.js");
 const loanRoutes = require("./routes/loanRoutes.js");
 
 // Middlewares.
+app.use(express.json());
 app.use("/api/user", userRoutes);
-app.use("/api/key", userRoutes);
-app.use("/api/section", userRoutes);
-app.use("/api/loan", userRoutes);
+app.use("/api/key", keyRoutes);
+app.use("/api/section", sectionRoutes);
+app.use("/api/loan", loanRoutes);
 
 // Rota raiz do sistema.
 app.get("/api", (req, res) => {
