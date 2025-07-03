@@ -57,11 +57,22 @@ const getAllLoans = async () => {
 //// Update.
 /* A atualização dos dados de empréstimo deve possibilitar, precipuamente, a finalização do empréstimo. */
 const setLoanOverdue = async (code) => {
-}
+	// Validar código de empréstimo.
+	if (code == null || Number(code) < 0)
+		return "ERRO: Código inválido.";
+
+	return await LOAN.setLoanOverdue(code)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
+};
 
 //// Delete.
 const deleteLoan = async (code) => {
-}
+};
 
 module.exports = {
 	createNewLoan,
