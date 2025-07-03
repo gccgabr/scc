@@ -72,6 +72,17 @@ const setLoanOverdue = async (code) => {
 
 //// Delete.
 const deleteLoan = async (code) => {
+	// Validar código de empréstimo.
+	if (code == null || Number(code) < 0)
+		return "ERRO: Código inválido.";
+
+	return await LOAN.deleteLoan(code)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
 
 module.exports = {
