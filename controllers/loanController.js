@@ -20,7 +20,7 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 	if (!CPF.isValid(userCpf))
 		return "ERRO: CPF inválido.";
 
-	return await LOAN.createNewLoan(code, keyCode, sectionCode, userCpf)
+	return await LOAN.createNewLoan(keyCode, sectionCode, userCpf)
 		.then(result => {
 			return result;
 		})
