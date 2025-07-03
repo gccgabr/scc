@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-const KEY_CONTROLLER = require("../controllers/key.js");
+const KEY_CONTROLLER = require("../controllers/keyController.js");
 
 /* Middleware configuration. */
 router.use(express.json());
