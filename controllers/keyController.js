@@ -9,15 +9,15 @@ const KEY = require("../services/key.js");
 const createNewKey = async (code, roomName, keyStatus, sectionCode) => {
 	// Validar código da chave.
 	if (!code || !code.match(/[0-9]{1,3}/))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	// Validar status da chave.
 	if (keyStatus < 0 || keyStatus > 2)
-		return "ERRO: Status inválido.";
+		throw "ERRO: Status inválido.";
 
 	// Validar código da seção.
 	if (!sectionCode || !SECTION.getAllSectionCodes().includes(sectionCode))
-		return "ERRO: Seção inexistente.";
+		throw "ERRO: Seção inexistente.";
 
 	return await KEY.createNewKey(code, roomName, keyStatus, sectionCode)
 		.then(result => {
@@ -32,7 +32,7 @@ const createNewKey = async (code, roomName, keyStatus, sectionCode) => {
 const getKeyByCode = async (code) => {
 	// Validar código da chave.
 	if (!code || !code.match(/[0-9]{1,3}/))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	return await KEY.getKeyByCode(code)
 		.then(result => {
@@ -46,7 +46,7 @@ const getKeyByCode = async (code) => {
 const getKeyBySectionCode = async (sectionCode) => {
 	// Validar código da seção.
 	if (!sectionCode || !SECTION.getAllSectionCodes().includes(sectionCode))
-		return "ERRO: Seção inexistente.";
+		throw "ERRO: Seção inexistente.";
 
 	return await KEY.getKeySectionCode(sectionCode)
 		.then(result => {
@@ -70,7 +70,7 @@ const getKeyByRoomName = async (roomName) => {
 const getKeyByStatus = async (keyStatus) => {
 	// Validar status da chave.
 	if (keyStatus < 0 || keyStatus > 2)
-		return "ERRO: Status inválido.";
+		throw "ERRO: Status inválido.";
 
 	return await KEY.getKeyByStatus(keyStatus)
 		.then(result => {
@@ -85,7 +85,7 @@ const getKeyByStatus = async (keyStatus) => {
 const updateKeyRoomName = async (code, roomName) => {
 	// Validar código da chave.
 	if (!code || !code.match(/[0-9]{1,3}/))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	return await KEY.updateKeyRoomName(code, roomName)
 		.then(result => {
@@ -99,11 +99,11 @@ const updateKeyRoomName = async (code, roomName) => {
 const updateKeyStatus = async (code, keyStatus) => {
 	// Validar código da chave.
 	if (!code || !code.match(/[0-9]{1,3}/))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	// Validar status da chave.
 	if (keyStatus < 0 || keyStatus > 2)
-		return "ERRO: Status inválido.";
+		throw "ERRO: Status inválido.";
 
 	return await KEY.updateKeyStatus(code, keyStatus)
 		.then(result => {
@@ -117,11 +117,11 @@ const updateKeyStatus = async (code, keyStatus) => {
 const updateKeySectionCode = async (code, sectionCode) => {
 	// Validar código da chave.
 	if (!code || !code.match(/[0-9]{1,3}/))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	// Validar código da seção.
 	if (!sectionCode || !SECTION.getAllSectionCodes().includes(sectionCode))
-		return "ERRO: Seção inexistente.";
+		throw "ERRO: Seção inexistente.";
 
 	return await KEY.updateKeySectionCode(code, sectionCode)
 		.then(result => {
@@ -137,7 +137,7 @@ const updateKeySectionCode = async (code, sectionCode) => {
 const deleteKey = async (code) => {
 	// Validar código da chave.
 	if (!code || !code.match(/[0-9]{1,3}/))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	return await KEY.deleteKey(code)
 		.then(result => {

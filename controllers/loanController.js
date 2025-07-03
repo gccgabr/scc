@@ -6,19 +6,19 @@ const LOAN = require("../services/loan.js");
 const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 	// Validar código de empréstimo.
 	if (code == null || Number(code) < 0)
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	// Validar código de chave.
 	if (!code || !code.match(/[0-9]{1,3}/))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	// Validar código da seção.
 	if (!sectionCode || !SECTION.getAllSectionCodes().includes(sectionCode))
-		return "ERRO: Seção inexistente.";
+		throw "ERRO: Seção inexistente.";
 
 	// Validar CPF de usuário.
 	if (!CPF.isValid(userCpf))
-		return "ERRO: CPF inválido.";
+		throw "ERRO: CPF inválido.";
 
 	return await LOAN.createNewLoan(keyCode, sectionCode, userCpf)
 		.then(result => {
@@ -33,7 +33,7 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 const getLoanByCode = async (code) => {
 	// Validar código de empréstimo.
 	if (code == null || Number(code) < 0)
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	return await LOAN.getLoanByCode(code)
 		.then(result => {
@@ -59,7 +59,7 @@ const getAllLoans = async () => {
 const setLoanOverdue = async (code) => {
 	// Validar código de empréstimo.
 	if (code == null || Number(code) < 0)
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	return await LOAN.setLoanOverdue(code)
 		.then(result => {
@@ -74,7 +74,7 @@ const setLoanOverdue = async (code) => {
 const deleteLoan = async (code) => {
 	// Validar código de empréstimo.
 	if (code == null || Number(code) < 0)
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	return await LOAN.deleteLoan(code)
 		.then(result => {

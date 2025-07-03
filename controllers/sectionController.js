@@ -7,11 +7,11 @@ const CPF = require("../controllers/userData/cpf.js");
 const createNewSection = async (name, userCpf) => {
 	// Validar nome da seção.
 	if (!name)
-		return "ERRO: Nome de seção inválido.";
+		throw "ERRO: Nome de seção inválido.";
 
 	// Validar CPF de usuário.
 	if (!CPF.isValid(userCpf))
-		return "ERRO: CPF inválido.";
+		throw "ERRO: CPF inválido.";
 
 	return await SECTION.createNewSection(name, userCpf)
 		.then(result => {
@@ -26,7 +26,7 @@ const createNewSection = async (name, userCpf) => {
 const getSectionByUserCpf = async (userCpf) => {
 	// Validar CPF de usuário.
 	if (!CPF.isValid(userCpf))
-		return "ERRO: CPF inválido.";
+		throw "ERRO: CPF inválido.";
 
 	return await SECTION.getSectionByUserCpf(userCpf)
 		.then(result => {
@@ -40,7 +40,7 @@ const getSectionByUserCpf = async (userCpf) => {
 const getSectionByName = async (name) => {
 	// Validar nome da seção.
 	if (!name)
-		return "ERRO: Nome de seção inválido.";
+		throw "ERRO: Nome de seção inválido.";
 
 	return await SECTION.getSectionByName(name)
 		.then(result => {
@@ -54,7 +54,7 @@ const getSectionByName = async (name) => {
 const getSectionByCode = async (code) => {
 	// Validar código da seção.
 	if (!Number.isInteger(code))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	return await SECTION.getSectionByCode(code)
 		.then(result => {
@@ -79,11 +79,11 @@ const getAllSectionCodes = async () => {
 const updateSectionName = async (code, name) => {
 	// Validar código da seção.
 	if (!Number.isInteger(code))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	// Validar nome da seção.
 	if (!name)
-		return "ERRO: Nome de seção inválido.";
+		throw "ERRO: Nome de seção inválido.";
 
 	return await SECTION.updateSectionName(code, name)
 		.then(result => {
@@ -97,11 +97,11 @@ const updateSectionName = async (code, name) => {
 const updateSectionUserCpf = async (code, userCpf) => {
 	// Validar código da seção.
 	if (!Number.isInteger(code))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 
 	// Validar CPF de usuário.
 	if (!CPF.isValid(userCpf))
-		return "ERRO: CPF inválido.";
+		throw "ERRO: CPF inválido.";
 
 	return await SECTION.updateSectionUserCpf(code, userCpf)
 		.then(result => {
@@ -116,7 +116,7 @@ const updateSectionUserCpf = async (code, userCpf) => {
 const deleteSection = async (code) => {
 	// Validar código da seção.
 	if (!Number.isInteger(code))
-		return "ERRO: Código inválido.";
+		throw "ERRO: Código inválido.";
 	
 	return await SECTION.deleteSection(code)
 		.then(result => {
