@@ -114,4 +114,15 @@ const updateSectionUserCpf = async (code, userCpf) => {
 
 // Delete.
 const deleteSection = async (code) => {
+	// Validar código da seção.
+	if (!Number.isInteger(code))
+		return "ERRO: Código inválido.";
+	
+	return await SECTION.deleteSection(code)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
 };
