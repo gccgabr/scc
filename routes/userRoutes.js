@@ -114,22 +114,66 @@ app.put("/api/user/name", (req, res) => {
 });
 
 // Atualizar endereço de e-mail de usuário.
-app.put("/api/user/:cpf/email/:email", (req, res) => {
-	console.log("PUT /api/user/:" + req.params.cpf + "/email/:" + req.params.email + " request.");
+app.put("/api/user/email", (req, res) => {
+	console.log("PUT /api/user/email request.");
+	if (!req.body) return res.sendStatus(400);
+	USER_CONTROLLER.updateUserEmail(
+			req.body.cpf,
+			req.body.email
+		)
+		.then(result => {
+			res.send("Endereço de e-mail de usuário atualizado com sucesso.");
+		})
+		.catch(error => {
+			res.send(error);
+		});
 });
 
 // Atualizar número de telefone de usuário.
-app.put("/api/user/:cpf/phone/:phone", (req, res) => {
-	console.log("PUT /api/user/:" + req.params.cpf + "/phone/:" + req.params.phone + " request.");
+app.put("/api/user/phone", (req, res) => {
+	console.log("PUT /api/user/phone request.");
+	if (!req.body) return res.sendStatus(400);
+	USER_CONTROLLER.updateUserPhone(
+			req.body.cpf,
+			req.body.phone
+		)
+		.then(result => {
+			res.send("Número de telefone de usuário atualizado com sucesso.");
+		})
+		.catch(error => {
+			res.send(error);
+		});
 });
 
 // Atualizar função de usuário.
-app.put("/api/user/:cpf/role/:role", (req, res) => {
-	console.log("PUT /api/user/:" + req.params.cpf + "/role/:" + req.params.role + " request.");
+app.put("/api/user/role", (req, res) => {
+	console.log("PUT /api/user/role request.");
+	if (!req.body) return res.sendStatus(400);
+	USER_CONTROLLER.updateUserRole(
+			req.body.cpf,
+			req.body.role
+		)
+		.then(result => {
+			res.send("Código de função de usuário atualizado com sucesso.");
+		})
+		.catch(error => {
+			res.send(error);
+		});
 });
 
-app.put("/api/user/:cpf/password/:password", (req, res) => {
-	console.log("PUT /api/user/:" + req.params.cpf + "/password/:" + req.params.password + " request.");
+app.put("/api/user/password", (req, res) => {
+	console.log("PUT /api/user/password request.");
+	if (!req.body) return res.sendStatus(400);
+	USER_CONTROLLER.updateUserPassword(
+			req.body.cpf,
+			req.body.password
+		)
+		.then(result => {
+			res.send("Senha de usuário atualizado com sucesso.");
+		})
+		.catch(error => {
+			res.send(error);
+		});
 });
 
 /* Escuta do servidor. */
