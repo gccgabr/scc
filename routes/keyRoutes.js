@@ -141,3 +141,19 @@ app.put("/api/key/section", (req, res) => {
 			return error;
 		});
 });
+
+// Deletar chave.
+app.delete("/api/key/del", (req, res) => {
+	if (!req.body) return res.sendStatus(400);
+	console.log("POST /api/key/section request");
+
+	return await KEY_CONTROLLER.deleteKey(
+			req.body.code
+		)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
+});
