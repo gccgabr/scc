@@ -25,7 +25,7 @@ router.post("/new", (req, res) => {
 });
 
 // Consultar seção por CPF de usuário.
-router.get("/user-cpf/:user-cpf", (req, res) => {
+router.get("/user-cpf/:userCpf", (req, res) => {
 	console.log("GET /user-cpf/" + req.params.userCpf + " request.");
 	
 	SECTION_CONTROLLER.getSectionByUserCpf(
@@ -42,9 +42,10 @@ router.get("/user-cpf/:user-cpf", (req, res) => {
 // Consultar seção por nome.
 router.get("/name/:name", (req, res) => {
 	console.log("GET /name/" + req.params.name + " request.");
+	console.log(req.params.name);
 
 	SECTION_CONTROLLER.getSectionByName(
-			req.body.name
+			req.params.name
 		)
 		.then(result => {
 			res.send(result);
