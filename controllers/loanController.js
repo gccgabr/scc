@@ -3,11 +3,7 @@
 const LOAN = require("../services/loan.js");
 
 //// Create.
-const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
-	// Validar código de empréstimo.
-	if (code == null || Number(code) < 0)
-		throw "ERRO: Código inválido.";
-
+const createNewLoan = async (keyCode, sectionCode, userCpf) => {
 	// Validar código de chave.
 	if (!code || !code.match(/[0-9]{1,3}/))
 		throw "ERRO: Código inválido.";
