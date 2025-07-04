@@ -126,3 +126,14 @@ const deleteSection = async (code) => {
 			return error;
 		});
 };
+
+module.exports = {
+	createNewSection,
+	getSectionByUserCpf,
+	getSectionByName,
+	getSectionByCode,
+	getAllSectionCodes,
+	updateSectionName,
+	updateSectionUserCpf,
+	deleteSection
+};
