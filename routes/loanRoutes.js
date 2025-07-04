@@ -75,7 +75,10 @@ router.get("/all", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.status(503).json(error);
+			console.log(typeof error);
+			res.send(error.message);
+			//res.status(503).json({erro: error});
+			//res.send(typeof error);
 		});
 });
 
