@@ -24,7 +24,7 @@ router.post("/new", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -39,7 +39,7 @@ router.get("/code/:code", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 
 });
@@ -55,7 +55,7 @@ router.get("/section/:section-code", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -70,7 +70,7 @@ router.get("/room/:room-name", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -85,7 +85,7 @@ router.get("/status/:status", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -102,7 +102,7 @@ router.put("/room", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -119,7 +119,7 @@ router.put("/status", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -136,7 +136,7 @@ router.put("/section", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -152,7 +152,7 @@ router.delete("/del", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 

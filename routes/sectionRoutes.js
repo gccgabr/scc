@@ -20,7 +20,7 @@ router.post("/new", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -35,7 +35,7 @@ router.get("/user-cpf/:userCpf", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -51,7 +51,7 @@ router.get("/name/:name", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -65,7 +65,7 @@ router.get("/code/:code", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -77,7 +77,7 @@ router.get("/all", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -94,7 +94,7 @@ router.put("/name", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 // Atualizar CPF de usuário.
@@ -110,7 +110,7 @@ router.put("/user-cpf", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -126,7 +126,7 @@ router.delete("/del", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
