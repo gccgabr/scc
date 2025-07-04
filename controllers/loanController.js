@@ -1,16 +1,23 @@
 "use strict";
 
 const LOAN = require("../services/loan.js");
+const SECTION = require("../services/section.js");
+const CPF = require("../controllers/userData/cpf.js");
 
 //// Create.
 const createNewLoan = async (keyCode, sectionCode, userCpf) => {
 	// Validar código de chave.
-	if (!code || !code.match(/[0-9]{1,3}/))
+	if (!keyCode || !keyCode.match(/[0-9]{1,3}/))
 		throw "ERRO: Código inválido.";
 
-	// Validar código da seção.
-	if (!sectionCode || !SECTION.getAllSectionCodes().includes(sectionCode))
-		throw "ERRO: Seção inexistente.";
+	await SECTION.getAllSectionCodes()
+		.then(result => {
+			if (!sectionCode || !result.includes(sectionCode))
+				throw "ERRO: Seção inexistente.";
+		})
+		.catch(error => {
+			throw error;
+		});
 
 	// Validar CPF de usuário.
 	if (!CPF.isValid(userCpf))
@@ -21,7 +28,7 @@ const createNewLoan = async (keyCode, sectionCode, userCpf) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -36,7 +43,7 @@ const getLoanByCode = async (code) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -46,7 +53,7 @@ const getAllLoans = async () => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -62,7 +69,7 @@ const setLoanOverdue = async (code) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -77,7 +84,7 @@ const deleteLoan = async (code) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
