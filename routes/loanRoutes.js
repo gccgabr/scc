@@ -21,7 +21,7 @@ router.post("/new", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -35,7 +35,7 @@ router.get("/user-cpf/:user-cpf", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -49,7 +49,7 @@ router.get("/name/:name", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -63,7 +63,7 @@ router.get("/code/:code", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -75,7 +75,7 @@ router.get("/all", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -90,7 +90,7 @@ router.put("/overdue", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
@@ -105,7 +105,7 @@ router.delete("/del", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.status(503).json(error);
 		});
 });
 
