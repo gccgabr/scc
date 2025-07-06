@@ -9,12 +9,18 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 		throw "ERRO: Código inválido.";
 
 	// Validar código de chave.
-	if (!code || !code.match(/[0-9]{1,3}/))
-		throw "ERRO: Código inválido.";
+	if (!keyCode || !keyCode.match(/[0-9]{1,3}/))
+		throw "ERRO: Código de chave inválido.";
 
 	// Validar código da seção.
-	if (!sectionCode || !SECTION.getAllSectionCodes().includes(sectionCode))
-		throw "ERRO: Seção inexistente.";
+	await SECTION.getAllSectionCodes()
+		.then(result => {
+			if (!sectionCode || !result.includes(sectionCode))
+				throw "ERRO: Código de seção inválido.";
+		})
+		.catch(error => {
+			throw error;
+		});
 
 	// Validar CPF de usuário.
 	if (!CPF.isValid(userCpf))
@@ -25,7 +31,7 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -40,7 +46,69 @@ const getLoanByCode = async (code) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
+		});
+};
+
+const getLoanByKeyCode = async (keyCode) => {
+	// Validar código de chave.
+	if (!keyCode || !keyCode.match(/[0-9]{1,3}/))
+		throw "ERRO: Código de chave inválido.";
+
+	return await LOAN.getLoanByKeyCode(keyCode)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			throw error;
+		});
+};
+
+const getLoanBySectionCode = async (sectionCode) => {
+	// Validar código da seção.
+	await SECTION.getAllSectionCodes()
+		.then(result => {
+			if (!sectionCode || !result.includes(sectionCode))
+				throw "ERRO: Código de seção inválido.";
+		})
+		.catch(error => {
+			throw error;
+		});
+
+	return await LOAN.getLoanBySectionCode(sectionCode)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			throw error;
+		});
+};
+
+const getLoanByUserCpf = async (userCpf) => {
+	// Validar CPF de usuário.
+	if (!CPF.isValid(userCpf))
+		throw "ERRO: CPF inválido.";
+
+	return await LOAN.getLoanByUserCpf(userCpf)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			throw error;
+		});
+};
+
+const getLoanByStatus = async (loanStatus) => {
+	// Validar status.
+	if (loanStatus < 0 || loanStatus > 1)
+		throw "ERRO: Código de estado do empréstimo inválido.";
+
+	return await LOAN.getLoanByStatus(loanStatus)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			throw error;
 		});
 };
 
@@ -50,7 +118,7 @@ const getAllLoans = async () => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -66,7 +134,7 @@ const setLoanOverdue = async (code) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -81,13 +149,17 @@ const deleteLoan = async (code) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
 module.exports = {
 	createNewLoan,
 	getLoanByCode,
+	getLoanByKeyCode,
+	getLoanBySectionCode,
+	getLoanByUserCpf,
+	getLoanByStatus,
 	getAllLoans,
 	setLoanOverdue,
 	deleteLoan
