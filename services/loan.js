@@ -30,10 +30,11 @@ const getLoanByCode = async (code) => {
 	});
 };
 
-const getAllLoans = async () => {
+const getLoanByKeyCode = async (keyCode) => {
 	let db = await DB.getDB();
-	let query = "SELECT * FROM Loan;";
-	return await db.all(query, (err, rows) => {
+	let query = "SELECT * FROM Loan WHERE key_code = ?";
+	let query_values = [keyCode];
+	return await db.all(query, query_values, (err, rows) => {
 		if (err) {
 			return err;
 		}
@@ -69,6 +70,29 @@ const getLoanByUserCpf = async (userCpf) => {
 	});
 };
 
+const getLoansByStatus = async (overdue) => {
+	let db = await DB.getDB();
+	let query = "SELECT * FROM Loan WHERE overdue = ?";
+	let query_values = [overdue];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+};
+
+const getAllLoans = async () => {
+	let db = await DB.getDB();
+	let query = "SELECT * FROM Loan;";
+	return await db.all(query, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return rows;
+	});
+};
+
 //// Update.
 /* A atualização dos dados de empréstimo deve possibilitar, precipuamente, a finalização do empréstimo. */
 const setLoanOverdue = async (code) => {
@@ -99,8 +123,11 @@ const deleteLoan = async (code) => {
 module.exports = {
 	createNewLoan,
 	getLoanByCode,
+	getLoanByKeyCode,
 	getLoanBySectionCode,
 	getLoanByUserCpf,
+	getLoanByStatus,
+	getAllLoans,
 	setLoanOverdue,
 	deleteLoan
 };
