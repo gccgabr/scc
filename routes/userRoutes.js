@@ -146,6 +146,7 @@ router.put("/role", (req, res) => {
 		});
 });
 
+// Alterar senha de usuário.
 router.put("/password", (req, res) => {
 	console.log("PUT /api/user/password request.");
 	if (!req.body) return res.sendStatus(400);
