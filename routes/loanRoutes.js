@@ -7,7 +7,7 @@ const LOAN_CONTROLLER = require("../controllers/loanController.js");
 /* Middleware configuration. */
 router.use(express.json());
 
-// Criar nova seção.
+// Criar novo empréstimo.
 router.post("/new", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /new request.");
@@ -21,39 +21,11 @@ router.post("/new", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
-// Consultar seção por CPF de usuário.
-router.get("/user-cpf/:user-cpf", (req, res) => {
-	console.log("GET /user-cpf/" + req.params.userCpf + " request.");
-	LOAN_CONTROLLER.getLoanByUserCpf(
-			req.params.userCpf
-		)
-		.then(result => {
-			res.send(result);
-		})
-		.catch(error => {
-			res.send(error);
-		});
-});
-
-// Consultar seção por nome.
-router.get("/name/:name", (req, res) => {
-	console.log("GET /name/" + req.params.name + " request.");
-	LOAN_CONTROLLER.getLoanByName(
-			req.params.name
-		)
-		.then(result => {
-			res.send(result);
-		})
-		.catch(error => {
-			res.send(error);
-		});
-});
-
-// Consultar seção por código.
+// Consultar empréstimo por código.
 router.get("/code/:code", (req, res) => {
 	console.log("GET /code/" + req.params.code + " request.");
 	LOAN_CONTROLLER.getLoanByCode(
@@ -63,7 +35,63 @@ router.get("/code/:code", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
+		});
+});
+
+// Consultar empréstimo por código da chave.
+router.get("/key-code/:keyCode", (req, res) => {
+	console.log("GET /key-code/" + req.params.keyCode + " request.");
+	LOAN_CONTROLLER.getLoanByKeyCode(
+			req.params.keyCode
+		)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error.message);
+		});
+});
+
+// Consultar empréstimo por código da seção.
+router.get("/section-code/:sectionCode", (req, res) => {
+	console.log("GET /key-code/" + req.params.sectionCode + " request.");
+	LOAN_CONTROLLER.getLoanBySectionCode(
+			req.params.sectionCode
+		)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error.message);
+		});
+});
+
+// Consultar empréstimo por CPF de usuário.
+router.get("/user-cpf/:userCpf", (req, res) => {
+	console.log("GET /user-cpf/" + req.params.userCpf + " request.");
+	LOAN_CONTROLLER.getLoanByUserCpf(
+			req.params.userCpf
+		)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error.message);
+		});
+});
+
+// Consultar empréstimo por estado.
+router.get("/loan-status/:loanStatus", (req, res) => {
+	console.log("GET /user-cpf/" + req.params.loanStatus + " request.");
+	LOAN_CONTROLLER.getLoanByUserCpf(
+			req.params.loanStatus
+		)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error.message);
 		});
 });
 
@@ -75,7 +103,7 @@ router.get("/all", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -90,11 +118,11 @@ router.put("/overdue", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
-// Atualizar status de empréstimo.
+// Deletar um empréstimo.
 router.delete("/del", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("DELETE /new request.");
@@ -105,7 +133,7 @@ router.delete("/del", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
