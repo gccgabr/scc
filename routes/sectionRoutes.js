@@ -78,7 +78,7 @@ router.get("/all", (req, res) => {
 		.catch(error => {
 			res.send(error);
 		});
-};
+});
 
 // Consultar todos os códigos das seções.
 router.get("/all/codes", (req, res) => {
