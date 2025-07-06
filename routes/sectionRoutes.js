@@ -68,8 +68,20 @@ router.get("/code/:code", (req, res) => {
 		});
 });
 
-// Consultar todos os códigos das seções.
+// Consultar todas as seções.
 router.get("/all", (req, res) => {
+	console.log("GET /all/codes request.");
+	SECTION_CONTROLLER.getAllSections()
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
+};
+
+// Consultar todos os códigos das seções.
+router.get("/all/codes", (req, res) => {
 	console.log("GET /all request.");
 	SECTION_CONTROLLER.getAllSectionCodes()
 		.then(result => {
