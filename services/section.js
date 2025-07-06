@@ -52,7 +52,7 @@ const getSectionByUserCpf = async (user_cpf) => {
 	});
 };
 
-const getAllSectionCodes = async () => {
+const getAllSections = async () => {
 	let db = await DB.getDB();
 	let query = "SELECT * FROM Section";
 	return await db.all(query, (err, rows) => {
