@@ -46,7 +46,7 @@ const createNewUser = async (cpf, name, email, phone, role, password) => {
 	let saltRounds = 10;
 	return await BCRYPT.hash(password, saltRounds, async (err, hashed_password) => {
 		if (err) {
-			return err;
+			throw err;
 		}
 
 		return await USER.createNewUser(cpf, name, email, phone, role, hashed_password)
@@ -54,7 +54,7 @@ const createNewUser = async (cpf, name, email, phone, role, password) => {
 				return result;
 			})
 			.catch(error => {
-				return error;
+				throw error;
 			});
 	});
 };
@@ -71,7 +71,7 @@ const getUserByCpf = async (cpf) => {
 			return {};
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -85,7 +85,7 @@ const getUsersByName = async (name) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 					
@@ -99,7 +99,7 @@ const getUsersByRole = async (role) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -113,7 +113,7 @@ const getAllUsers = async () => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -129,7 +129,7 @@ const updateUserName = async (cpf, name) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -144,7 +144,7 @@ const updateUserEmail = async (cpf, email) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -159,7 +159,7 @@ const updateUserPhone = async (cpf, phone) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -174,7 +174,7 @@ const updateUserRole = async (cpf, role) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -189,7 +189,21 @@ const updateUserPassword = async (cpf, password) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
+		});
+};
+
+const deleteUser = async (userCpf) => {
+	// Validar CPF.
+	if (!DATA.cpf.isValid(cpf))
+		throw "ERRO: CPF inválido.";
+
+	return await USER.deleteUser(userCpf)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			throw error;
 		});
 };
 
@@ -203,5 +217,6 @@ module.exports = {
 	updateUserEmail,
 	updateUserPhone,
 	updateUserRole,
-	updateUserPassword
+	updateUserPassword,
+	deleteUser
 };
