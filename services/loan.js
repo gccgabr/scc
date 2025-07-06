@@ -70,7 +70,7 @@ const getLoanByUserCpf = async (userCpf) => {
 	});
 };
 
-const getLoansByStatus = async (overdue) => {
+const getLoanByStatus = async (overdue) => {
 	let db = await DB.getDB();
 	let query = "SELECT * FROM Loan WHERE overdue = ?";
 	let query_values = [overdue];
