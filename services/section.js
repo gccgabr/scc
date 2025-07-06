@@ -114,9 +114,10 @@ const deleteSection = async (code) => {
 
 module.exports = {
 	createNewSection,
-	getSectionByUserCpf,
-	getSectionByName,
 	getSectionByCode,
+	getSectionByName,
+	getSectionByUserCpf,
+	getAllSections,
 	getAllSectionCodes,
 	updateSectionName,
 	updateSectionUserCpf,
