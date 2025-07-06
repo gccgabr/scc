@@ -123,7 +123,7 @@ router.put("/status", (req, res) => {
 		});
 });
 
-// Atualizar nome da sala.
+// Atualizar código da seção.
 router.put("/section", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /section request");
