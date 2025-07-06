@@ -66,6 +66,17 @@ const getKeyByStatus = async (keyStatus) => {
 };
 
 // Update.
+const updateKeySectionCode = async (code, sectionCode) => {
+	let db = await DB.getDB();
+	let query = "UPDATE Key SET section_code = ? WHERE code = ?";
+	let query_values = [sectionCode, code];
+	return await db.run(query, query_values, (err) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+};
 const updateKeyRoomName = async (code, roomName) => {
 	let db = await DB.getDB();
 	let query = "UPDATE Key SET room_name = ? WHERE code = ?";
@@ -82,18 +93,6 @@ const updateKeyStatus = async (code, keyStatus) => {
 	let db = await DB.getDB();
 	let query = "UPDATE Key SET status = ? WHERE code = ?";
 	let query_values = [keyStatus, code];
-	return await db.run(query, query_values, (err) => {
-		if (err) {
-			return err;
-		}
-		return true;
-	});
-};
-
-const updateKeySectionCode = async (code, sectionCode) => {
-	let db = await DB.getDB();
-	let query = "UPDATE Key SET section_code = ? WHERE code = ?";
-	let query_values = [sectionCode, code];
 	return await db.run(query, query_values, (err) => {
 		if (err) {
 			return err;
