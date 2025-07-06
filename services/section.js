@@ -16,17 +16,17 @@ const createNewSection = async (name, userCpf) => {
 };
 
 // Read.
-const getSectionByUserCpf = async (user_cpf) => {
+const getSectionByCode = async (code) => {
 	let db = await DB.getDB();
-	let query = "SELECT * FROM Section WHERE user_cpf = ?";
-	let query_values = [user_cpf];
+	let query = "SELECT * FROM Section WHERE code = ?";
+	let query_values = [code];
 	return await db.all(query, query_values, (err, rows) => {
 		if (err) {
 			return err;
 		}
 		return rows;
 	});
-};
+}
 
 const getSectionByName = async (name) => {
 	let db = await DB.getDB();
@@ -40,17 +40,28 @@ const getSectionByName = async (name) => {
 	});
 };
 
-const getSectionByCode = async (code) => {
+const getSectionByUserCpf = async (user_cpf) => {
 	let db = await DB.getDB();
-	let query = "SELECT * FROM Section WHERE code = ?";
-	let query_values = [code];
+	let query = "SELECT * FROM Section WHERE user_cpf = ?";
+	let query_values = [user_cpf];
 	return await db.all(query, query_values, (err, rows) => {
 		if (err) {
 			return err;
 		}
 		return rows;
 	});
-}
+};
+
+const getAllSectionCodes = async () => {
+	let db = await DB.getDB();
+	let query = "SELECT * FROM Section";
+	return await db.all(query, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return rows;
+	});
+};
 
 const getAllSectionCodes = async () => {
 	let db = await DB.getDB();
