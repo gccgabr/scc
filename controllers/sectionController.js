@@ -18,24 +18,24 @@ const createNewSection = async (name, userCpf) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
 // Read.
-const getSectionByUserCpf = async (userCpf) => {
-	// Validar CPF de usuário.
-	if (!CPF.isValid(userCpf))
-		throw "ERRO: CPF inválido.";
+const getSectionByCode = async (code) => {
+	// Validar código da seção.
+	if (!Number.isInteger(code))
+		throw "ERRO: Código inválido.";
 
-	return await SECTION.getSectionByUserCpf(userCpf)
+	return await SECTION.getSectionByCode(code)
 		.then(result => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
-};
+}
 
 const getSectionByName = async (name) => {
 	// Validar nome da seção.
@@ -47,23 +47,33 @@ const getSectionByName = async (name) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
-const getSectionByCode = async (code) => {
-	// Validar código da seção.
-	if (!Number.isInteger(code))
-		throw "ERRO: Código inválido.";
+const getSectionByUserCpf = async (userCpf) => {
+	// Validar CPF de usuário.
+	if (!CPF.isValid(userCpf))
+		throw "ERRO: CPF inválido.";
 
-	return await SECTION.getSectionByCode(code)
+	return await SECTION.getSectionByUserCpf(userCpf)
 		.then(result => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
-}
+};
+
+const getAllSections = async () => {
+	return await SECTION.getAllSections()
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			throw error;
+		});
+};
 
 const getAllSectionCodes = async () => {
 	return await SECTION.getAllSectionCodes()
@@ -71,7 +81,7 @@ const getAllSectionCodes = async () => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -90,7 +100,7 @@ const updateSectionName = async (code, name) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -108,7 +118,7 @@ const updateSectionUserCpf = async (code, userCpf) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
 };
 
@@ -123,6 +133,18 @@ const deleteSection = async (code) => {
 			return result;
 		})
 		.catch(error => {
-			return error;
+			throw error;
 		});
+};
+
+module.exports = {
+	createNewSection,
+	getSectionByCode,
+	getSectionByName,
+	getSectionByUserCpf,
+	getAllSections,
+	getAllSectionCodes,
+	updateSectionName,
+	updateSectionUserCpf,
+	deleteSection
 };
