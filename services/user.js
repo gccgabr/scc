@@ -18,7 +18,7 @@ const createNewUser = async (cpf, name, email, phone, role, hashed_password) => 
 // Read.
 const getUserByCpf = async (cpf) => {
 	let db = await DB.getDB();
-	return await db.all("SELECT * FROM User WHERE cpf=?", [cpf], (err, rows) => {
+	return await db.all("SELECT cpf, name, email, phone, role FROM User WHERE cpf=?", [cpf], (err, rows) => {
 		if (err) {
 			return err;
 		}
@@ -28,7 +28,7 @@ const getUserByCpf = async (cpf) => {
 
 const getUsersByName = async (name) => {
 	let db = await DB.getDB();
-	return await db.all("SELECT * FROM User WHERE name=?", [name], (err, rows) => {
+	return await db.all("SELECT cpf, name, email, phone, role FROM User WHERE name=?", [name], (err, rows) => {
 		if (err) {
 			return err;
 		}
@@ -38,7 +38,7 @@ const getUsersByName = async (name) => {
 
 const getUsersByRole = async (role) => {
 	let db = await DB.getDB();
-	return await db.all("SELECT * FROM User WHERE role=?", [role], (err, rows) => {
+	return await db.all("SELECT cpf, name, email, phone, role FROM User WHERE role=?", [role], (err, rows) => {
 		if (err) {
 			return err;
 		}
@@ -48,7 +48,7 @@ const getUsersByRole = async (role) => {
 
 const getAllUsers = async () => {
 	let db = await DB.getDB();
-	let result = await db.all("SELECT * FROM User", [], (err, rows) => {
+	let result = await db.all("SELECT cpf, name, email, phone, role FROM User", [], (err, rows) => {
 		if (err) {
 			return err;
 		}
