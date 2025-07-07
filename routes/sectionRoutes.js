@@ -24,12 +24,11 @@ router.post("/new", (req, res) => {
 		});
 });
 
-// Consultar seção por CPF de usuário.
-router.get("/user-cpf/:user-cpf", (req, res) => {
-	console.log("GET /user-cpf/" + req.params.userCpf + " request.");
-	
-	SECTION_CONTROLLER.getSectionByUserCpf(
-			req.params.userCpf
+// Consultar seção por código.
+router.get("/record/code/:code", (req, res) => {
+	console.log("GET /code/" + req.params.code + " request.");
+	SECTION_CONTROLLER.getSectionByCode(
+			req.params.code
 		)
 		.then(result => {
 			res.send(result);
@@ -40,7 +39,7 @@ router.get("/user-cpf/:user-cpf", (req, res) => {
 });
 
 // Consultar seção por nome.
-router.get("/name/:name", (req, res) => {
+router.get("/record/name/:name", (req, res) => {
 	console.log("GET /name/" + req.params.name + " request.");
 
 	SECTION_CONTROLLER.getSectionByName(
@@ -54,11 +53,12 @@ router.get("/name/:name", (req, res) => {
 		});
 });
 
-// Consultar seção por código.
-router.get("/code/:code", (req, res) => {
-	console.log("GET /code/" + req.params.code + " request.");
-	SECTION_CONTROLLER.getSectionByCode(
-			req.params.code
+// Consultar seção por CPF de usuário.
+router.get("/record/user-cpf/:userCpf", (req, res) => {
+	console.log("GET /user-cpf/" + req.params.userCpf + " request.");
+	
+	SECTION_CONTROLLER.getSectionByUserCpf(
+			req.params.userCpf
 		)
 		.then(result => {
 			res.send(result);
@@ -69,7 +69,7 @@ router.get("/code/:code", (req, res) => {
 });
 
 // Consultar todas as seções.
-router.get("/all", (req, res) => {
+router.get("/record/all", (req, res) => {
 	console.log("GET /all/codes request.");
 	SECTION_CONTROLLER.getAllSections()
 		.then(result => {
@@ -81,7 +81,7 @@ router.get("/all", (req, res) => {
 });
 
 // Consultar todos os códigos das seções.
-router.get("/all/codes", (req, res) => {
+router.get("/record/all/codes", (req, res) => {
 	console.log("GET /all request.");
 	SECTION_CONTROLLER.getAllSectionCodes()
 		.then(result => {
@@ -93,7 +93,7 @@ router.get("/all/codes", (req, res) => {
 });
 
 // Atualizar nome de seção.
-router.put("/name", (req, res) => {
+router.put("/set/name", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("PUT /name request.");
 
@@ -109,7 +109,7 @@ router.put("/name", (req, res) => {
 		});
 });
 // Atualizar CPF de usuário.
-router.put("/user-cpf", (req, res) => {
+router.put("/set/user-cpf", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("PUT /name request.");
 
