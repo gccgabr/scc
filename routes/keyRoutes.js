@@ -20,7 +20,6 @@ router.post("/new", (req, res) => {
 			req.body.sectionCode
 		)
 		.then(result => {
-			console.log(result);
 			res.send(result);
 		})
 		.catch(error => {
