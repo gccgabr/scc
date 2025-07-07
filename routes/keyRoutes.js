@@ -29,7 +29,7 @@ router.post("/new", (req, res) => {
 });
 
 // Consulta de chave por código.
-router.get("/code/:code", (req, res) => {
+router.get("/record/code/:code", (req, res) => {
 	console.log("GET /code/" + req.params.code + " request.");
 
 	KEY_CONTROLLER.getKeyByCode(
@@ -45,7 +45,7 @@ router.get("/code/:code", (req, res) => {
 });
 
 // Consulta de chave por código de seção.
-router.get("/section/:section-code", (req, res) => {
+router.get("/record/section-code/:sectionCode", (req, res) => {
 	console.log("GET /section/" + req.params.sectionCode + " request.");
 
 	KEY_CONTROLLER.getKeyBySectionCode(
@@ -60,7 +60,7 @@ router.get("/section/:section-code", (req, res) => {
 });
 
 // Consulta de chave por nome da sala.
-router.get("/room/:room-name", (req, res) => {
+router.get("/record/room-name/:roomName", (req, res) => {
 	console.log("GET /room/" + req.params.roomName + " request.");
 
 	kEY_CONTROLLER.getKeyByRoomName(
@@ -75,11 +75,28 @@ router.get("/room/:room-name", (req, res) => {
 });
 
 // Consulta de chave por status.
-router.get("/status/:status", (req, res) => {
-	console.log("GET /status/" + req.params.status + " request.");
+router.get("/record/status/:keyStatus", (req, res) => {
+	console.log("GET /status/" + req.params.keyStatus + " request.");
 
 	KEY_CONTROLLER.getKeyByStatus(
-			req.params.status
+			req.params.keyStatus
+		)
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
+});
+
+// Atualizar código da seção.
+router.put("/set/section-code", (req, res) => {
+	if (!req.body) return res.sendStatus(400);
+	console.log("POST /section request");
+
+	KEY_CONTROLLER.updateKeyRoomName(
+			req.body.code,
+			req.body.sectionCode
 		)
 		.then(result => {
 			res.send(result);
@@ -90,7 +107,7 @@ router.get("/status/:status", (req, res) => {
 });
 
 // Atualizar nome da sala.
-router.put("/room", (req, res) => {
+router.put("/set/room-name", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /room request.");
 
@@ -107,30 +124,13 @@ router.put("/room", (req, res) => {
 });
 
 // Atualizar status da chave.
-router.put("/status", (req, res) => {
+router.put("/set/status", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /status");
 
 	KEY_CONTROLLER.updateKeyStatus(
 			req.body.code,
 			req.body.keyStatus
-		)
-		.then(result => {
-			res.send(result);
-		})
-		.catch(error => {
-			res.send(error);
-		});
-});
-
-// Atualizar código da seção.
-router.put("/section", (req, res) => {
-	if (!req.body) return res.sendStatus(400);
-	console.log("POST /section request");
-
-	KEY_CONTROLLER.updateKeyRoomName(
-			req.body.code,
-			req.body.sectionCode
 		)
 		.then(result => {
 			res.send(result);
