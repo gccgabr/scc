@@ -44,12 +44,12 @@ const createNewUser = async (cpf, name, email, phone, role, password) => {
 
 	// Codificar senha e gravar dados no banco de dados.
 	let saltRounds = 10;
-	return await BCRYPT.hash(password, saltRounds, async (err, hashed_password) => {
+	return await BCRYPT.hash(password, saltRounds, async (err, hashedPassword) => {
 		if (err) {
 			throw err;
 		}
 
-		return await USER.createNewUser(cpf, name, email, phone, role, hashed_password)
+		return await USER.createNewUser(cpf, name, email, phone, role, hashedPassword)
 			.then(result => {
 				return result;
 			})
@@ -184,13 +184,23 @@ const updateUserPassword = async (cpf, password) => {
 	if (!password || !password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/))
 		throw "ERRO: Senha inválida.";
 
-	return await USER.updateUserHashedPassword(cpf, password)
-		.then(result => {
-			return result;
-		})
-		.catch(error => {
-			throw error;
-		});
+	// Codificar senha e gravar dados no banco de dados.
+	let saltRounds = 10;
+	return await BCRYPT.hash(password, saltRounds, async (err, hashedPassword) => {
+		if (err) {
+			throw err;
+		}
+
+		return await USER.updateUserHashedPassword(cpf, hashedPassword)
+			.then(result => {
+				return result;
+			})
+			.catch(error => {
+				throw error;
+			});
+
+	});
+
 };
 
 const deleteUser = async (userCpf) => {
