@@ -19,7 +19,6 @@ const createNewKey = async (code, roomName, keyStatus, sectionCode) => {
 	let sectionExists = 1;
 	await SECTION.getAllSectionCodes()
 		.then(result => {
-			console.log(result);
 			if (!sectionCode || !result.includes(sectionCode))
 				sectionExists = 0;
 		})
@@ -55,10 +54,19 @@ const getKeyByCode = async (code) => {
 
 const getKeyBySectionCode = async (sectionCode) => {
 	// Validar código da seção.
-	if (!sectionCode || !SECTION.getAllSectionCodes().includes(sectionCode))
+	let sectionExists = 1;
+	await SECTION.getAllSectionCodes()
+		.then(result => {
+			if (!sectionCode || !result.includes(sectionCode))
+				sectionExists = 0;
+		})
+		.catch(error => {
+			throw error;
+		});
+	if (sectionExists)
 		throw "ERRO: Seção inexistente.";
 
-	return await KEY.getKeySectionCode(sectionCode)
+	return await KEY.getKeyBySectionCode(sectionCode)
 		.then(result => {
 			return result;
 		})
