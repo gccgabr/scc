@@ -20,7 +20,7 @@ router.post("/new", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -34,7 +34,7 @@ router.get("/record/code/:code", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -49,7 +49,7 @@ router.get("/record/name/:name", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -64,7 +64,7 @@ router.get("/record/user-cpf/:userCpf", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -76,7 +76,7 @@ router.get("/record/all", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -88,7 +88,7 @@ router.get("/record/all/codes", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -105,7 +105,7 @@ router.put("/set/name", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 // Atualizar CPF de usuário.
@@ -121,7 +121,7 @@ router.put("/set/user-cpf", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -137,7 +137,7 @@ router.delete("/del", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 

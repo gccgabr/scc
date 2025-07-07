@@ -29,7 +29,7 @@ router.post("/new", (req, res) => {
 		res.send("Usuário cadastrado com sucesso.");
 	})
 	.catch(error => {
-		res.send(error);
+		res.send(error.message);
 	});
 });
 
@@ -41,7 +41,7 @@ router.get("/record/cpf/:cpf", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -53,7 +53,7 @@ router.get("/record/name/:name", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -65,7 +65,7 @@ router.get("/record/role/:role", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -77,7 +77,7 @@ router.get("/record/all", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -94,7 +94,7 @@ router.put("/set/name", (req, res) => {
 			res.send("Nome de usuário atualizado com sucesso.");
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -110,7 +110,7 @@ router.put("/set/email", (req, res) => {
 			res.send("Endereço de e-mail de usuário atualizado com sucesso.");
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -126,7 +126,7 @@ router.put("/set/phone", (req, res) => {
 			res.send("Número de telefone de usuário atualizado com sucesso.");
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -142,7 +142,7 @@ router.put("/set/role", (req, res) => {
 			res.send("Código de função de usuário atualizado com sucesso.");
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -158,7 +158,7 @@ router.put("/set/password", (req, res) => {
 			res.send("Senha de usuário atualizado com sucesso.");
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
@@ -174,7 +174,7 @@ router.delete("/del", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error);
+			res.send(error.message);
 		});
 });
 
