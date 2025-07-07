@@ -116,7 +116,7 @@ const updateUserRole = async (cpf, role) => {
 
 // Atualizar senha de usuário.
 const updateUserHashedPassword = async (cpf, hashedPassword) => {
-	let query = "UPDATE User SET role = ? WHERE cpf = ?";
+	let query = "UPDATE User SET hashed_password = ? WHERE cpf = ?";
 	let query_values = [hashedPassword, cpf];
 	let db = await DB.getDB();
 	return await db.run(query, query_values, (err) => {
