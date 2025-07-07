@@ -203,12 +203,12 @@ const updateUserPassword = async (cpf, password) => {
 
 };
 
-const deleteUser = async (userCpf) => {
+const deleteUser = async (cpf) => {
 	// Validar CPF.
 	if (!DATA.cpf.isValid(cpf))
 		throw "ERRO: CPF inválido.";
 
-	return await USER.deleteUser(userCpf)
+	return await USER.deleteUser(cpf)
 		.then(result => {
 			return result;
 		})
