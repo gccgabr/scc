@@ -62,7 +62,7 @@ router.get("/record/section-code/:sectionCode", (req, res) => {
 router.get("/record/room-name/:roomName", (req, res) => {
 	console.log("GET /room/" + req.params.roomName + " request.");
 
-	kEY_CONTROLLER.getKeyByRoomName(
+	KEY_CONTROLLER.getKeyByRoomName(
 			req.params.roomName
 		)
 		.then(result => {
@@ -93,7 +93,7 @@ router.put("/set/section-code", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("POST /section request");
 
-	KEY_CONTROLLER.updateKeyRoomName(
+	KEY_CONTROLLER.updateKeySectionCode(
 			req.body.code,
 			req.body.sectionCode
 		)
