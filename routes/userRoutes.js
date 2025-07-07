@@ -164,7 +164,7 @@ router.put("/set/password", (req, res) => {
 
 // Deletar usuário.
 router.delete("/del", (req, res) => {
-	console.log("PUT /api/user/del request.");
+	console.log("DELETE /api/user/del request.");
 	if (!req.body) return res.sendStatus(400);
 
 	USER_CONTROLLER.deleteUser(
