@@ -26,7 +26,7 @@ router.post("/new", (req, res) => {
 });
 
 // Consultar empréstimo por código.
-router.get("/code/:code", (req, res) => {
+router.get("/record/code/:code", (req, res) => {
 	console.log("GET /code/" + req.params.code + " request.");
 	LOAN_CONTROLLER.getLoanByCode(
 			req.params.code
@@ -40,7 +40,7 @@ router.get("/code/:code", (req, res) => {
 });
 
 // Consultar empréstimo por código da chave.
-router.get("/key-code/:keyCode", (req, res) => {
+router.get("/record/key-code/:keyCode", (req, res) => {
 	console.log("GET /key-code/" + req.params.keyCode + " request.");
 	LOAN_CONTROLLER.getLoanByKeyCode(
 			req.params.keyCode
@@ -54,7 +54,7 @@ router.get("/key-code/:keyCode", (req, res) => {
 });
 
 // Consultar empréstimo por código da seção.
-router.get("/section-code/:sectionCode", (req, res) => {
+router.get("/record/section-code/:sectionCode", (req, res) => {
 	console.log("GET /key-code/" + req.params.sectionCode + " request.");
 	LOAN_CONTROLLER.getLoanBySectionCode(
 			req.params.sectionCode
@@ -68,7 +68,7 @@ router.get("/section-code/:sectionCode", (req, res) => {
 });
 
 // Consultar empréstimo por CPF de usuário.
-router.get("/user-cpf/:userCpf", (req, res) => {
+router.get("/record/user-cpf/:userCpf", (req, res) => {
 	console.log("GET /user-cpf/" + req.params.userCpf + " request.");
 	LOAN_CONTROLLER.getLoanByUserCpf(
 			req.params.userCpf
@@ -82,7 +82,7 @@ router.get("/user-cpf/:userCpf", (req, res) => {
 });
 
 // Consultar empréstimo por estado.
-router.get("/loan-status/:loanStatus", (req, res) => {
+router.get("/record/loan-status/:loanStatus", (req, res) => {
 	console.log("GET /user-cpf/" + req.params.loanStatus + " request.");
 	LOAN_CONTROLLER.getLoanByUserCpf(
 			req.params.loanStatus
@@ -96,7 +96,7 @@ router.get("/loan-status/:loanStatus", (req, res) => {
 });
 
 // Consultar todos os empréstimos.
-router.get("/all", (req, res) => {
+router.get("/record/all", (req, res) => {
 	console.log("GET /all request.");
 	LOAN_CONTROLLER.getAllLoans()
 		.then(result => {
@@ -108,7 +108,7 @@ router.get("/all", (req, res) => {
 });
 
 // Atualizar status de empréstimo.
-router.put("/overdue", (req, res) => {
+router.put("/set/overdue", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
 	console.log("PUT /overdue request.");
 	LOAN_CONTROLLER.setLoanOverdue(
