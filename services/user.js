@@ -157,6 +157,7 @@ module.exports = {
 	getUsersByName,
 	getUsersByRole,
 	getAllUsers,
+	getUserCredencial,
 	updateUserName,
 	updateUserEmail,
 	updateUserPhone,
