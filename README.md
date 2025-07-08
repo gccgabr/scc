@@ -15,18 +15,25 @@
 - [x] Key.
 - [x] Loan.
 
-#### API (Regramento feito com ExpressJS)
-- [ ] *Middlewares* (manejo das requisições e respostas).
-- [ ] Rotas.
-- [ ] Registro de eventos.
-- [ ] Autenticação.
-- [ ] Gerenciamento de erros.
-
 #### Controladores
-- [ ] User.
-- [ ] Section.
-- [ ] Key.
-- [ ] Loan.
+- [x] User.
+- [x] Section.
+- [x] Key.
+- [x] Loan.
+
+#### API (Regramento feito com ExpressJS)
+- [x] Configuração de rotas.
+- [ ] Autenticação e autorização da da API.
+- [ ] Autorização restrita por usuário.
+
 
 #### Interface gráfica (*front-end*)
-[ ... ]
+- [ ] Autocadastro.
+- [ ] Autenticação.
+- [ ] Lista de seção.
+- [ ] Cadastro de seção.
+- [ ] Edição de seção.
+- [ ] Cadastro de chave.
+- [ ] Edição de chave.
+- [ ] Lista de empréstimos.
+- [ ] Cadastro de empréstimo.
