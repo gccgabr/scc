@@ -57,6 +57,16 @@ const getAllUsers = async () => {
 	return result;
 };
 
+const getUserCredential = async (cpf) => {
+	let db  await DB.getDB();
+	let query = "SELECT cpf, hashed_password FROM User WHERE cpf = ?";
+	let query_values = [cpf];
+	return await db.get(query, query_values, (err, row) => {
+		if (err) return err;
+		return row;	
+	});
+};
+
 /* Update. */
 // Atualizar nome de usuário.
 const updateUserName = async (cpf, name) => {
