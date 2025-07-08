@@ -81,7 +81,7 @@ router.get("/record/all", (req, res) => {
 });
 
 // Consultar todos os códigos das seções.
-router.get("/record/all/codes", (req, res) => {
+router.get("/record/all/code", (req, res) => {
 	console.log("GET /all request.");
 	SECTION_CONTROLLER.getAllSectionCodes()
 		.then(result => {
