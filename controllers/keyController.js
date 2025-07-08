@@ -114,6 +114,16 @@ const getKeyByStatus = async (keyStatus) => {
 		});
 };
 
+const getAllKeys = async () => {
+	return await KEY.getAllKeys()
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			throw error;
+		});
+};
+
 // Update.
 const updateKeySectionCode = async (code, sectionCode) => {
 	// Validar código da chave.
@@ -125,7 +135,6 @@ const updateKeySectionCode = async (code, sectionCode) => {
 
 	return await KEY.updateKeySectionCode(code, sectionCode)
 		.then(result => {
-			console.log(result);
 			return result;
 		})
 		.catch(error => {

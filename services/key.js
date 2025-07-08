@@ -65,6 +65,18 @@ const getKeyByStatus = async (keyStatus) => {
 	});
 };
 
+const getAllKeys = async () => {
+	let db = await DB.getDB();
+	let query = "SELECT * FROM Key";
+	let query_values = [keyStatus];
+	return await db.all(query, query_values, (err, rows) => {
+		if (err) {
+			return err;
+		}
+		return true;
+	});
+};
+
 // Update.
 const updateKeySectionCode = async (code, sectionCode) => {
 	let db = await DB.getDB();
@@ -121,6 +133,7 @@ module.exports = {
 	getKeyBySectionCode,
 	getKeyByRoomName,
 	getKeyByStatus,
+	getAllKeys,
 	updateKeyRoomName,
 	updateKeyStatus,
 	updateKeySectionCode,
