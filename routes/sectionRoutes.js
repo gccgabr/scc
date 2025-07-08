@@ -10,7 +10,7 @@ router.use(express.json());
 // Criar nova seção.
 router.post("/new", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("PUT /new request.");
+	console.log("POST /new request.");
 
 	SECTION_CONTROLLER.createNewSection(
 			req.body.name,
@@ -20,7 +20,7 @@ router.post("/new", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -34,7 +34,7 @@ router.get("/record/code/:code", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -49,7 +49,7 @@ router.get("/record/name/:name", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -64,7 +64,7 @@ router.get("/record/user-cpf/:userCpf", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -76,7 +76,7 @@ router.get("/record/all", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -88,7 +88,7 @@ router.get("/record/all/codes", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -105,7 +105,7 @@ router.put("/set/name", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 // Atualizar CPF de usuário.
@@ -121,7 +121,7 @@ router.put("/set/user-cpf", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -137,7 +137,7 @@ router.delete("/del", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 

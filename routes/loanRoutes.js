@@ -21,7 +21,7 @@ router.post("/new", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -35,7 +35,7 @@ router.get("/record/code/:code", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -49,7 +49,7 @@ router.get("/record/key-code/:keyCode", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -63,7 +63,7 @@ router.get("/record/section-code/:sectionCode", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -77,7 +77,7 @@ router.get("/record/user-cpf/:userCpf", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -91,7 +91,7 @@ router.get("/record/loan-status/:loanStatus", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -103,7 +103,7 @@ router.get("/record/all", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -118,7 +118,7 @@ router.put("/set/overdue", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
@@ -133,7 +133,7 @@ router.delete("/del", (req, res) => {
 			res.send(result);
 		})
 		.catch(error => {
-			res.send(error.message);
+			res.send(error);
 		});
 });
 
