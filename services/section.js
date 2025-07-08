@@ -66,12 +66,15 @@ const getAllSections = async () => {
 const getAllSectionCodes = async () => {
 	let db = await DB.getDB();
 	let query = "SELECT code FROM Section";
-	return await db.all(query, (err, rows) => {
+	let rows =  await db.all(query, (err, rows) => {
 		if (err) {
 			return err;
 		}
-		return rows;
 	});
+	let codes = [];
+	for (let i = 0; i < rows.length; i++)
+		codes.push(rows[i]["code"]);
+	return codes;
 };
 
 // Update.
