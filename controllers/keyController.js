@@ -5,6 +5,21 @@
 const SECTION = require("../services/section.js");
 const KEY = require("../services/key.js");
 
+// Validar código da seção.
+const validateSectionCode = async (sectionCode) => {
+	let sectionExists = true;
+	await SECTION.getAllSectionCodes()
+		.then(result => {
+			if (isNaN(sectionCode) || sectionCode < 0 || !result.includes(sectionCode))
+				sectionExists = false;
+		})
+		.catch(error => {
+			throw error;
+		});
+
+	return sectionExists ? true : false;
+};
+
 // Create.
 const createNewKey = async (code, roomName, keyStatus, sectionCode) => {
 	// Validar código da chave.
@@ -105,12 +120,12 @@ const updateKeySectionCode = async (code, sectionCode) => {
 	if (!code || !code.match(/[0-9]{1,3}/))
 		throw "ERRO: Código inválido.";
 
-	// Validar código da seção.
-	if (!sectionCode || !SECTION.getAllSectionCodes().includes(sectionCode))
+	if (!await validateSectionCode(sectionCode))
 		throw "ERRO: Seção inexistente.";
 
 	return await KEY.updateKeySectionCode(code, sectionCode)
 		.then(result => {
+			console.log(result);
 			return result;
 		})
 		.catch(error => {
