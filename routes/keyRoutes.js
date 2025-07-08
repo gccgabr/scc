@@ -88,7 +88,7 @@ router.get("/record/status/:keyStatus", (req, res) => {
 		});
 });
 
-routes.get("/record/all", (req, res) => {
+router.get("/record/all", (req, res) => {
 	console.log("GET /record/all request.");
 	KEY_CONTROLLER.getAllKeys()
 		.then(result => {
