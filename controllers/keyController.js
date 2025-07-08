@@ -196,6 +196,7 @@ module.exports = {
 	getKeyBySectionCode,
 	getKeyByRoomName,
 	getKeyByStatus,
+	getAllKeys,
 	updateKeySectionCode,
 	updateKeyRoomName,
 	updateKeyStatus,
