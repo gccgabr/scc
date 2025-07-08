@@ -88,6 +88,18 @@ router.get("/record/status/:keyStatus", (req, res) => {
 		});
 });
 
+routes.get("/record/all", (req, res) => {
+	console.log("GET /record/all request.");
+	KEY_CONTROLLER.getAllKeys()
+		.then(result => {
+			res.send(result);
+		})
+		.catch(error => {
+			res.send(error);
+		});
+};
+
+
 // Atualizar código da seção.
 router.put("/set/section-code", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
