@@ -117,6 +117,20 @@ const getAllUsers = async () => {
 		});
 };
 
+const getUserCredential = async (cpf) => {
+	// Validar CPF.
+	if (!DATA.cpf.isValid(cpf))
+		throw "ERRO: CPF inválido.";
+
+	return await USER.getUserCredential(cpf)
+		.then(result => {
+			return result;
+		})
+		.catch(error => {
+			return error;
+		});
+};
+
 
 // Update.
 // Atualizar nome de usuário.
@@ -223,6 +237,7 @@ module.exports = {
 	getUsersByName,
 	getUsersByRole,
 	getAllUsers,
+	getUserCredential,
 	updateUserName,
 	updateUserEmail,
 	updateUserPhone,
