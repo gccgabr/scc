@@ -36,7 +36,7 @@ const createNewSection = async (name, userCpf) => {
 // Read.
 const getSectionByCode = async (code) => {
 	// Validar código da seção.
-	if (!Number.isInteger(code))
+	if (isNaN(code) || !Number.isInteger(Number(code)))
 		throw "ERRO: Código inválido.";
 
 	return await SECTION.getSectionByCode(code)
