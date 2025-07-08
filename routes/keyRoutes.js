@@ -91,7 +91,7 @@ router.get("/record/status/:keyStatus", (req, res) => {
 // Atualizar código da seção.
 router.put("/set/section-code", (req, res) => {
 	if (!req.body) return res.sendStatus(400);
-	console.log("POST /section request");
+	console.log("PUT /section request");
 
 	KEY_CONTROLLER.updateKeySectionCode(
 			req.body.code,
