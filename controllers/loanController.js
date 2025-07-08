@@ -1,15 +1,13 @@
 "use strict";
 
 const LOAN = require("../services/loan.js");
+const SECTION = require("../services/section.js");
+const CPF = require("../controllers/userData/cpf.js");
 
 //// Create.
-const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
-	// Validar código de empréstimo.
-	if (code == null || Number(code) < 0)
-		throw "ERRO: Código inválido.";
-
+const createNewLoan = async (keyCode, sectionCode, userCpf) => {
 	// Validar código de chave.
-	if (!keyCode || !keyCode.match(/[0-9]{1,3}/))
+	if (!keyCode || !/[0-9]{1,3}/.test(keyCode))
 		throw "ERRO: Código de chave inválido.";
 
 	// Validar código da seção.
@@ -31,6 +29,7 @@ const createNewLoan = async (code, keyCode, sectionCode, userCpf) => {
 			return result;
 		})
 		.catch(error => {
+			console.log(error);
 			throw error;
 		});
 };
@@ -68,7 +67,7 @@ const getLoanBySectionCode = async (sectionCode) => {
 	// Validar código da seção.
 	await SECTION.getAllSectionCodes()
 		.then(result => {
-			if (!sectionCode || !result.includes(sectionCode))
+			if (isNaN(sectionCode) || !result.includes(Number(sectionCode)))
 				throw "ERRO: Código de seção inválido.";
 		})
 		.catch(error => {
