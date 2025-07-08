@@ -16,6 +16,13 @@ app.use("/api/key", keyRoutes);
 app.use("/api/section", sectionRoutes);
 app.use("/api/loan", loanRoutes);
 
+// Rotas públicas.
+router.post("/api/register", (req, res) => {
+});
+
+router.post("/api/login", (req, res) => {
+});
+
 // Rota raiz do sistema.
 app.get("/api", (req, res) => {
 	res.send("Sistema de Controle de Chaves.");
