@@ -84,7 +84,7 @@ router.get("/record/user-cpf/:userCpf", (req, res) => {
 // Consultar empréstimo por estado.
 router.get("/record/loan-status/:loanStatus", (req, res) => {
 	console.log("GET /user-cpf/" + req.params.loanStatus + " request.");
-	LOAN_CONTROLLER.getLoanByUserCpf(
+	LOAN_CONTROLLER.getLoanByStatus(
 			req.params.loanStatus
 		)
 		.then(result => {
