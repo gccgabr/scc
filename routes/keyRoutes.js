@@ -97,7 +97,7 @@ routes.get("/record/all", (req, res) => {
 		.catch(error => {
 			res.send(error);
 		});
-};
+});
 
 
 // Atualizar código da seção.
