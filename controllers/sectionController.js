@@ -2,6 +2,7 @@
 
 const SECTION = require("../services/section.js");
 const CPF = require("../controllers/userData/cpf.js");
+const USER = require("../controllers/userController.js");
 
 // Create.
 const createNewSection = async (name, userCpf) => {
@@ -12,6 +13,16 @@ const createNewSection = async (name, userCpf) => {
 	// Validar CPF de usuário.
 	if (!CPF.isValid(userCpf))
 		throw "ERRO: CPF inválido.";
+
+	// Verificar se usuário está cadastrado no sistema.
+	await USER.getUserByCpf(userCpf)
+		.then(result => {
+			if (result === undefined || result.length == 0)
+				throw "ERRO: Usuário não cadastrado no sistema.";
+		})
+		.catch(error => {
+			throw error.message;
+		});
 
 	return await SECTION.createNewSection(name, userCpf)
 		.then(result => {
