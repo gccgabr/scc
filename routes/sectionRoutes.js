@@ -43,7 +43,7 @@ router.get("/record/name/:name", (req, res) => {
 	console.log("GET /name/" + req.params.name + " request.");
 
 	SECTION_CONTROLLER.getSectionByName(
-			req.body.name
+			req.params.name
 		)
 		.then(result => {
 			res.send(result);
