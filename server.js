@@ -8,6 +8,7 @@ const userRoutes = require("./routes/userRoutes.js");
 const keyRoutes = require("./routes/keyRoutes.js");
 const sectionRoutes = require("./routes/sectionRoutes.js");
 const loanRoutes = require("./routes/loanRoutes.js");
+const USER_CONTROLLER = require("./controllers/userController.js");
 
 // Middlewares.
 app.use(express.json());
@@ -17,7 +18,7 @@ app.use("/api/section", sectionRoutes);
 app.use("/api/loan", loanRoutes);
 
 // Rotas públicas.
-router.post("/api/register", (req, res) => {
+router.post("/api/register", async (req, res) => {
 });
 
 router.post("/api/login", (req, res) => {
